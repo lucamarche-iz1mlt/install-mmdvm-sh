@@ -1,0 +1,18 @@
+[Unit]
+Description=YSFGateway Service
+After=network-online.target netcheck.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+StandardOutput=null
+WorkingDirectory=/usr/local/bin
+ExecStart=/usr/local/bin/YSFGateway /etc/ysfgateway/YSFGateway.ini
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+
+[Install]
+# To make the network-online.target available
+# systemctl enable systemd-networkd-wait-online.service
+WantedBy=network-online.target
