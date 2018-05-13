@@ -1,2 +1,3 @@
 # install-mmdvm-sh
-simple script for install mmdvm software on raspberry PI
+Simple script for install mmdvm software on raspberry PI
+Read README.txt for exec the script
