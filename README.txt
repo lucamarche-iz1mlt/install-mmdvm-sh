@@ -135,7 +135,9 @@ ircDDBGateway
 	LOG file e data base
 
 	/var/log/ircddbgateway/
-
-
+	
+	AUDIO File and Reflector list
+	
+        /usr/local/share/opendv
 
 
