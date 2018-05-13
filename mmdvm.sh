@@ -79,7 +79,7 @@ if [ $VAR = "y" ]; then
 	# nano MMDVM.ini
 
 	cp -R /home/pi/MMDVM/MMDVMHost/MMDVM.ini ${CONFIG_PATH_MMDVMHOST}
-        cp -R /home/pi/MMDVM/MMDVMHost/NXDN.csv ${LOG_PATH_MMDVMHOST}
+    cp -R /home/pi/MMDVM/MMDVMHost/NXDN.csv ${LOG_PATH_MMDVMHOST}
 	cp -R /home/pi/installazione_mmdvm/mmdvmhost.service /lib/systemd/system/
 	cp -R /home/pi/installazione_mmdvm/mmdvmhost.timer /lib/systemd/system/
 	chmod 755 /lib/systemd/system/mmdvmhost.service
@@ -114,6 +114,7 @@ if [ $VAR = "y" ]; then
 
 	cp -R /home/pi/MMDVM/DMRGateway/DMRGateway.ini ${CONFIG_PATH_DMRGATEWAY}
 	cp -R /home/pi/MMDVM/DMRGateway/XLXHosts.txt ${LOG_PATH_DMRGATEWAY}
+	cp -R /home/pi/MMDVM/DMRGateway/Audio ${CONFIG_PATH_DMRGATEWAY}
 	cp -R /home/pi/installazione_mmdvm/dmrgateway.service /lib/systemd/system/
 	cp -R /home/pi/installazione_mmdvm/dmrgateway.timer /lib/systemd/system/
 	chmod 755 /lib/systemd/system/dmrgateway.service	
