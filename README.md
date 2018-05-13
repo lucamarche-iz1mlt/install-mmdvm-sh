@@ -12,4 +12,9 @@ Software installing:
 
 Read README.txt for exec the script.
 
+For more info:
+https://github.com/g4klx
+
+https://github.com/dg9vh
+
 
