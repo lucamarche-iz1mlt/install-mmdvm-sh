@@ -1,6 +1,6 @@
 #! /bin/sh
 #---------------------------------Carico percorsi da script di installazione-----------------------------------------------------
-PATH_FILE_INSTAL_MMDVM="/home/pi/installazione_mmdvm/mmdvm.sh"
+PATH_FILE_INSTAL_MMDVM=$(pwd)"/mmdvm.sh"
 
 LOG_PATH_MMDVMHOST=$(grep -e "LOG_PATH_MMDVMHOST=" ${PATH_FILE_INSTAL_MMDVM} | cut -f 2 -d"=" | cut -f 2 -d'"')
 LOG_PATH_DMRGATEWAY=$(grep -e "LOG_PATH_DMRGATEWAY=" ${PATH_FILE_INSTAL_MMDVM} | cut -f 2 -d"=" | cut -f 2 -d'"')
@@ -35,9 +35,9 @@ echo 'Eliminazione servizi......'
 rm -R /lib/systemd/system/mmdvmhost.* /lib/systemd/system/dmrgateway.* /lib/systemd/system/ysfgateway.* /lib/systemd/system/ysfparrot.* /lib/systemd/system/ircddbgatewayd.* /lib/systemd/system/telegrambot.* /lib/systemd/system/${FILE_NAME}.*
 
 echo 'Disinstallazione ircDDBGateway.....'
-# cd /home/pi/MMDVM/OpenDV/ircDDBGateway/
-# make distclean
-# make clean
+cd /home/pi/MMDVM/OpenDV/ircDDBGateway/
+make distclean
+make clean
 
 rm -R /usr/local/bin/aprstransmit /usr/local/bin/remotecontrold /usr/local/bin/texttransmit /usr/local/bin/voicetransmit /usr/local/sbin/aprstransmitd /usr/local/sbin/ircddbgatewayd /usr/local/sbin/starnetserverd /usr/local/sbin/timercontrold /usr/local/sbin/timeserverd
 rm -R /usr/local/share/opendv
@@ -46,11 +46,12 @@ echo 'Disinstallazione di mmdvmhost, dmrgateway, ysfgateway, ysfparrot, buttonof
 rm -R ${LOG_PATH_MMDVMHOST} ${LOG_PATH_DMRGATEWAY} ${LOG_PATH_YSFGATEWAY} ${LOG_PATH_IRCDDBGATEWAY} ${CONFIG_PATH_MMDVMHOST} ${CONFIG_PATH_DMRGATEWAY} ${CONFIG_PATH_YSFGATEWAY} ${CONFIG_PATH_IRCDDBGATEWAY} 
 rm /usr/local/bin/MMDVMHost /usr/local/bin/DMRGateway /usr/local/bin/YSFGateway /usr/local/bin/YSFParrot ${PATH_FILEEXECBUTTON}${FILE_NAME}.py
 
-# echo 'Eliminazione cartella /home/pi/MMDVM.....'
-# rm -R /home/pi/MMDVM
-echo 'Eliminazione dashbord....'
+echo 'Eliminazione cartella /home/pi/MMDVM.....'
+rm -R /home/pi/MMDVM
 
+echo 'Eliminazione dashbord....'
 rm -R /var/www/html/MMDVMHost-Dashboard/
+
 systemctl daemon-reload
 
 echo 'Fine'
