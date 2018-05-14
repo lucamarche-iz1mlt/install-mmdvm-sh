@@ -3,8 +3,11 @@ Simple script for install mmdvm software on raspberry PI on Debian 9.
 
 Software installing:
 * MMDVMHost
+  * Wiring PI for LCD display 16Xn
 * DMRGateway
-* YSFGateway and YSFParrot
+* YSFClients
+  * YSFGateway
+  * YSFParrot
 * ircDDBGateway no gui
 * DG9VH MMDVMHost-Dashboard
 * Telegram BOT
