@@ -37,12 +37,12 @@ def handle(msg):
       	bot.sendMessage(chat_id, "DMRGateway riavviato")
       	out = commands.getoutput("sudo service dmrgateway restart")	
 		
-	elif command == '/reboot':     	
-      	out = commands.getoutput("sudo reboot")
-		bot.sendMessage(chat_id, "Riavvio in corso...")
+    elif command == '/reboot':     	
+        out = commands.getoutput("sudo reboot")
+        bot.sendMessage(chat_id, "Riavvio in corso...")
 		
-	elif command == '/off':  
-		bot.sendMessage(chat_id, "Arresro...")   	
+    elif command == '/off':  
+	bot.sendMessage(chat_id, "Arresro...")   	
       	out = commands.getoutput("sudo halt")
 
 #----------------------------------------------------------------------------------------------------------------------------	
