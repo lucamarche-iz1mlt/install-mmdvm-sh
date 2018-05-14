@@ -60,7 +60,7 @@ YSFParrot
 	
 	sudo service ysfparrot status
 
-Telegrambot
+IrcDDBGateway
 
 	sudo service ircddbgateway start
 	
