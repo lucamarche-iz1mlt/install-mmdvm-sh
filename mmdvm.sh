@@ -119,7 +119,7 @@ cp -R ${PATH_RUN_SCRIPT}/script /home/pi/
 # }
 # fi
 
-echo 'Vuoi inatallare dashboard? (y/n)'
+echo 'Vuoi installare dashboard? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
 	sh ${PATH_RUN_SCRIPT}/install/dashboard.sh
