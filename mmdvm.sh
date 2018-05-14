@@ -85,6 +85,15 @@ if [ $VAR = "y" ]; then
 	cp -R ${PATH_RUN_SCRIPT}mmdvmhost.timer /lib/systemd/system/
 	chmod 755 /lib/systemd/system/mmdvmhost.service
 	chmod 755 /lib/systemd/system/mmdvmhost.timer
+	
+	echo 'Vuoi installare Wiring PI? y/n (consigliato)'
+	read VAR
+	if [ $VAR = "y" ]; then
+    		echo 'Installazione Wiring PI....'
+		git clone git://git.drogon.net/wiringPi
+		cd wiringPi
+		sudo ./build
+	fi
 fi
 
 echo 'Vuoi inatallare DMRGateway? (y/n)'
