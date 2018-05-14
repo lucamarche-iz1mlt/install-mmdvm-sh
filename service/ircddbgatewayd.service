@@ -1,0 +1,18 @@
+Unit]
+Description=ircDDBGateway Service
+After=syslog.target network.target
+
+[Service]
+Type=simple
+# Restart=always
+# RestartSec=3
+StandardOutput=null
+WorkingDirectory=/usr/local/sbin
+ExecStart=/usr/local/sbin/ircddbgatewayd -logdir /var/log/ircddbgateway -confdir /etc/ircddbgateway 
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+
+[Install]
+# To make the network-online.target available
+# systemctl enable systemd-networkd-wait-online.service
+WantedBy=network-online.target

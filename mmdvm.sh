@@ -18,12 +18,14 @@ LOG_PATH_MMDVMHOST="/var/log/mmdvmhost/"
 LOG_PATH_DMRGATEWAY="/var/log/dmrgateway/"
 LOG_PATH_YSFGATEWAY="/var/log/ysfgateway/"
 LOG_PATH_IRCDDBGATEWAY="/var/log/ircddbgateway/"
+
 CONFIG_PATH_MMDVMHOST="/etc/mmdvmhost/"
 CONFIG_PATH_DMRGATEWAY="/etc/dmrgateway/"
 CONFIG_PATH_YSFGATEWAY="/etc/ysfgateway/"
 CONFIG_PATH_IRCDDBGATEWAY="/etc/ircddbgateway/"
+
 PATH_EXEC="/usr/local/bin/"
-PATH_RUN_SCRIPT=$(pwd)"/"
+PATH_RUN_SCRIPT=$(pwd)
 
 FILE_NAME="buttonoff" 			#Nome senza estersione
 PATH_FILEEXECBUTTON="/usr/local/bin/" 	#Destinazione programma python
@@ -58,163 +60,34 @@ apt-get autoremove
 echo 'Vuoi inatallare MMDVMHost? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	git clone https://github.com/g4klx/MMDVMHost.git /home/pi/MMDVM/MMDVMHost
-	echo 'Compilazione e instalazione....'
-	cd /home/pi/MMDVM/MMDVMHost/
-
-	make clean
-	echo 'Compilazione MMDVMHost...'
-	if [ $N_CPU = "0" ]; then
-		make
-	else
-		make -j$N_CPU all
-	fi
-
-	cp -R /home/pi/MMDVM/MMDVMHost/MMDVMHost ${PATH_EXEC}
-	mkdir -p ${CONFIG_PATH_MMDVMHOST}
-	mkdir -p ${LOG_PATH_MMDVMHOST}
-
-	chmod -R 777 ${CONFIG_PATH_MMDVMHOST}
-	chmod -R 777 ${LOG_PATH_MMDVMHOST}
-
-	# nano MMDVM.ini
-
-	cp -R /home/pi/MMDVM/MMDVMHost/MMDVM.ini ${CONFIG_PATH_MMDVMHOST}
-	cp -R /home/pi/MMDVM/MMDVMHost/NXDN.csv ${LOG_PATH_MMDVMHOST}
-	cp -R ${PATH_RUN_SCRIPT}mmdvmhost.service /lib/systemd/system/
-	cp -R ${PATH_RUN_SCRIPT}mmdvmhost.timer /lib/systemd/system/
-	chmod 755 /lib/systemd/system/mmdvmhost.service
-	chmod 755 /lib/systemd/system/mmdvmhost.timer
-	
-	echo 'Vuoi installare Wiring PI? y/n (consigliato)'
-	read VAR
-	if [ $VAR = "y" ]; then
-    		echo 'Installazione Wiring PI....'
-		git clone git://git.drogon.net/wiringPi
-		cd wiringPi
-		sudo ./build
-	fi
+	sh ${PATH_RUN_SCRIPT}/install/mmdvmhost.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_MMDVMHOST} ${CONFIG_PATH_MMDVMHOST} ${PATH_EXEC}
 fi
 
 echo 'Vuoi inatallare DMRGateway? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	git clone https://github.com/g4klx/DMRGateway.git /home/pi/MMDVM/DMRGateway
-	cd /home/pi/MMDVM/DMRGateway/
-	make clean
-	echo 'Compilazione  DMRGateway...'
-	if [ $N_CPU = "0" ]; then
-		make
-	else
-		make -j$N_CPU all
-	fi
-
-	cp -R /home/pi/MMDVM/DMRGateway/DMRGateway ${PATH_EXEC}
-	mkdir -p ${CONFIG_PATH_DMRGATEWAY}
-	mkdir -p ${LOG_PATH_DMRGATEWAY}
-	chmod -R 777 ${CONFIG_PATH_DMRGATEWAY}
-	chmod -R 777 ${LOG_PATH_DMRGATEWAY}
-
-	# sed -i 's,FilePath=.,FilePath=${LOG_PATH_DMRGATEWAY},g' ${CONFIG_PATH_DMRGATEWAY}MMDVM.ini
-	# sed -i 's,FileLevel=1,FileLevel=0,g' ${CONFIG_PATH_DMRGATEWAY}MMDVM.ini
-	# sed -i 's,# Port=/dev/ttyACM0,Port=/dev/ttyAMA0,g' ${CONFIG_PATH_DMRGATEWAY}MMDVM.ini
-	# sed -i 's,Port=\\.\COM3,# Port=\\.\COM3,g' ${CONFIG_PATH_DMRGATEWAY}MMDVM.ini
-
-	#nano DMRGateway.ini
-
-	cp -R /home/pi/MMDVM/DMRGateway/DMRGateway.ini ${CONFIG_PATH_DMRGATEWAY}
-	cp -R /home/pi/MMDVM/DMRGateway/XLXHosts.txt ${LOG_PATH_DMRGATEWAY}
-	cp -R /home/pi/MMDVM/DMRGateway/Audio ${CONFIG_PATH_DMRGATEWAY}
-	cp -R ${PATH_RUN_SCRIPT}dmrgateway.service /lib/systemd/system/
-	cp -R ${PATH_RUN_SCRIPT}dmrgateway.timer /lib/systemd/system/
-	chmod 755 /lib/systemd/system/dmrgateway.service	
-	chmod 755 /lib/systemd/system/dmrgateway.timer
+	sh ${PATH_RUN_SCRIPT}/install/dmrgateway.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_DMRGATEWAY} ${CONFIG_PATH_DMRGATEWAY} ${PATH_EXEC}
 fi
 
 echo 'Vuoi inatallare YSFClients? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	git clone https://github.com/g4klx/YSFClients.git /home/pi/MMDVM/YSFClients
-	cd /home/pi/MMDVM/YSFClients/YSFGateway/
-	sudo make clean
-	echo 'Compilazione  YSFGateway...'
-	if [ $N_CPU = "0" ]; then
-		make
-	else
-		make -j$N_CPU all
-	fi
-
-	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/YSFGateway ${PATH_EXEC}
-	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/FCSRooms.txt ${CONFIG_PATH_YSFGATEWAY}
-	
-	mkdir -p ${CONFIG_PATH_YSFGATEWAY}
-	mkdir -p ${LOG_PATH_YSFGATEWAY}
-	chmod -R 777 ${CONFIG_PATH_YSFGATEWAY}
-	chmod -R 777 ${LOG_PATH_YSFGATEWAY}
-	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/YSFGateway.ini ${CONFIG_PATH_YSFGATEWAY}
-
-	cd /home/pi/MMDVM/YSFClients/YSFParrot/
-	echo 'Compilazione  YSFParrot...'
-	if [ $N_CPU = "0" ]; then
-		make
-	else
-		make -j$N_CPU all
-	fi
-
-	cp -R /home/pi/MMDVM/YSFClients/YSFParrot/YSFParrot ${PATH_EXEC}
-	cp -R ${PATH_RUN_SCRIPT}ysfgateway.service /lib/systemd/system/	
-	cp -R ${PATH_RUN_SCRIPT}ysfparrot.service /lib/systemd/system/	
-	cp -R ${PATH_RUN_SCRIPT}ysfgateway.timer /lib/systemd/system/
-	cp -R ${PATH_RUN_SCRIPT}ysfparrot.timer /lib/systemd/system/
-	chmod 755 /lib/systemd/system/ysfgateway.service
-	chmod 755 /lib/systemd/system/ysfparrot.service
-	chmod 755 /lib/systemd/system/ysfgateway.timer
-	chmod 755 /lib/systemd/system/ysfparrot.timer	
+	sh ${PATH_RUN_SCRIPT}/install/ysfclients.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_YSFGATEWAY} ${CONFIG_PATH_YSFGATEWAY} ${PATH_EXEC}
 fi
 
 echo 'Vuoi inatallare ircDDBGateway? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	git clone https://github.com/dl5di/OpenDV.git /home/pi/MMDVM/OpenDV
-	echo 'Compilazione  IRCDDBGateway...'
-	cd /home/pi/MMDVM/OpenDV/ircDDBGateway/
-    make clean
-	./configure --without-gui
-	if [ $N_CPU = "0" ]; then
-		sudo make
-	else
-		sudo make -j$N_CPU all
-	fi
-
-	make install
-	mkdir -p ${CONFIG_PATH_IRCDDBGATEWAY}
-	mkdir -p ${LOG_PATH_IRCDDBGATEWAY}
-	chmod -R 777 ${CONFIG_PATH_IRCDDBGATEWAY}
-	chmod -R 777 ${LOG_PATH_IRCDDBGATEWAY}
-	cp -R ${PATH_RUN_SCRIPT}ircddbgateway ${CONFIG_PATH_IRCDDBGATEWAY}
-	cp -R ${PATH_RUN_SCRIPT}ircddbgatewayd.service /lib/systemd/system/
-	cp -R ${PATH_RUN_SCRIPT}ircddbgatewayd.timer /lib/systemd/system/
-	chmod 755 /lib/systemd/system/ircddbgatewayd.service
-	chmod 755 /lib/systemd/system/ircddbgatewayd.timer
-	
+	sh ${PATH_RUN_SCRIPT}/install/ircddbgateway.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_IRCDDBGATEWAY} ${CONFIG_PATH_IRCDDBGATEWAY} ${PATH_EXEC}
 fi
 
 echo 'Vuoi inatallare i servizi bot telegram? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	pip install telepot
-	sleep 2
-
-	echo 'Crezione dei servizi.....'
-
-	cp -R ${PATH_RUN_SCRIPT}telegrambot.service /lib/systemd/system/
-	cp -R ${PATH_RUN_SCRIPT}telegrambot.timer /lib/systemd/system/
-	chmod 755 /lib/systemd/system/telegrambot.service
-	chmod 755 /lib/systemd/system/telegrambot.timer
-
+	sh ${PATH_RUN_SCRIPT}/install/telegrambot.sh
 fi
 
-cp -R ${PATH_RUN_SCRIPT}script /home/pi/
+cp -R ${PATH_RUN_SCRIPT}/script /home/pi/
 
 # echo 'Configurazione DVMega'
 # systemctl stop serial-getty@ttyAMA0.service
@@ -249,85 +122,13 @@ cp -R ${PATH_RUN_SCRIPT}script /home/pi/
 echo 'Vuoi inatallare dashboard? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	echo 'installazione dashboard....'
-
-	cd /var/www/html/
-	git clone https://github.com/dg9vh/MMDVMHost-Dashboard.git ./MMDVMHost-Dashboard
-
-	groupadd www-data
-	usermod -G www-data -a pi
-	chown -R www-data:www-data /var/www/html
-	chmod -R 775 /var/www/html
-	
-	lighty-enable-mod fastcgi
-	lighty-enable-mod fastcgi-php
-	service lighttpd force-reload
+	sh ${PATH_RUN_SCRIPT}/install/dashboard.sh
 fi
 
 echo 'Vuoi inatallare buttonoff? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	echo 'installazione di buttonoff....'
-
-	echo 'Creazione file python'
-
-	echo '#!/usr/bin/python' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo '#Script per la gestione del power off del sistema tramite pulsante' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo '#collegato alla GPIO' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo '#scritto da Fabio PASTORINO IZ1JXP, Mauro ZUNINO IW1ELO' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo 'import RPi.GPIO as GPIO' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo 'import os' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo 'GPIO.setmode(GPIO.BCM)' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo 'GPIO.setwarnings(False)' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo 'GPIO.setup(21,GPIO.IN,pull_up_down=GPIO.PUD_UP)' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo 'GPIO.setup(16,GPIO.OUT)' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo '#attendo la pressione del tasto (pin a massa)' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo 'GPIO.wait_for_edge(21,GPIO.FALLING)' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo '#accendo il led per confermare avvenuta fase di poweroff' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo 'GPIO.output(16, True)' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-	echo 'os.system("sudo shutdown -h now")' >>${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-
-	chmod 777 ${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-
-	# nano ${PATH_FILEEXECBUTTON}${FILE_NAME}.py
-
-	echo 'Creazione servizio systemd....'
-
-	echo '[Unit]' >>/lib/systemd/system/${FILE_NAME}.service
-	echo 'Description=Servizio Button Off' >>/lib/systemd/system/${FILE_NAME}.service
-	echo 'After=syslog.target network.target' >>/lib/systemd/system/${FILE_NAME}.service
-	echo ' ' >>/lib/systemd/system/${FILE_NAME}.service
-	echo '[Service]' >>/lib/systemd/system/${FILE_NAME}.service
-	echo 'User=root' >>/lib/systemd/system/${FILE_NAME}.service
-	echo "WorkingDirectory=${PATH_FILEEXECBUTTON}" >>/lib/systemd/system/${FILE_NAME}.service
-	echo "ExecStart=/usr/bin/python ${PATH_FILEEXECBUTTON}${FILE_NAME}.py" >>/lib/systemd/system/${FILE_NAME}.service
-	echo 'ExecReload=/bin/kill -HUP $MAINPID' >>/lib/systemd/system/${FILE_NAME}.service
-	echo 'KillMode=process' >>/lib/systemd/system/${FILE_NAME}.service
-	echo ' ' >>/lib/systemd/system/${FILE_NAME}.service
-	echo '[Install]' >>/lib/systemd/system/${FILE_NAME}.service
-	echo 'WantedBy=multi-user.target' >>/lib/systemd/system/${FILE_NAME}.service
-
-	# nano /lib/systemd/system/${FILE_NAME}.service
-
-	echo '[Timer]' >>/lib/systemd/system/${FILE_NAME}.timer
-	echo 'OnStartupSec=30' >>/lib/systemd/system/${FILE_NAME}.timer
-	echo ' ' >>/lib/systemd/system/${FILE_NAME}.timer
-	echo '[Install]' >>/lib/systemd/system/${FILE_NAME}.timer
-	echo 'WantedBy=multi-user.target' >>/lib/systemd/system/${FILE_NAME}.timer
-
-	# nano /lib/systemd/system/${FILE_NAME}.timer
-
-	chmod 755 /lib/systemd/system/${FILE_NAME}.service
-	chmod 755 /lib/systemd/system/${FILE_NAME}.timer
-
-	
-
-	# systemctl enable ${FILE_NAME}.timer
-
-	echo 'Fare "sudo reboot" per il corretto funzionanmeto.'
-	echo "Per avviare manualmente l'applicazione   'sudo service ${FILE_NAME} start'"
-	echo "per arrestare manualmente l'applicazione 'sudo service ${FILE_NAME} stop'"
-	echo "Per disabilitare l'avvio automatico      'sudo systemctl disable ${FILE_NAME}.timer'"
+	sh ${PATH_RUN_SCRIPT}/install/buttonoff.sh ${PATH_FILEEXECBUTTON} ${FILE_NAME}
 fi
 
 systemctl daemon-reload
