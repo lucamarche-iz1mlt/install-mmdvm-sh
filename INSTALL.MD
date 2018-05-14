@@ -4,15 +4,15 @@
 
 Scaricare il pacchetto da terminale tramite il comando  
 
-git clone https://github.com/lucamarche-iz1mlt/install-mmdvm-sh.git ./install-mmdvm-sh
+	git clone https://github.com/lucamarche-iz1mlt/install-mmdvm-sh.git ./install-mmdvm-sh
 
-cd install-mmdvm-sh
+	cd install-mmdvm-sh
 
-Lanciare lo script tramite il comando
+	Lanciare lo script tramite il comando
 
-sudo sh mmdvm.sh
+	sudo sh mmdvm.sh
 
-attendere fine istallazione....
+	attendere fine istallazione....
 
 # Comandi di avvio servizi
 
