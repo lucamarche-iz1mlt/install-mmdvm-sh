@@ -17,33 +17,54 @@ attendere fine istallazione....
 # Comandi di avvio servizi
 
 MMDVMHost
-	sudo service mmdvmhost start
-	sudo service mmdvmhost stop
-	sudo service mmdvmhost reload
-	sudo service mmdvmhost status
 
+	sudo service mmdvmhost start
+	
+	sudo service mmdvmhost stop
+	
+	sudo service mmdvmhost reload
+	
+	sudo service mmdvmhost status
+	
 DMRGateway
+
 	sudo service dmrgateway start
+	
 	sudo service dmrgateway stop
+	
 	sudo service dmrgateway reload
+	
 	sudo service dmrgateway status
 
+
 YSFGateway
+
 	sudo service ysfgateway start
+	
 	sudo service ysfgateway stop
+	
 	sudo service ysfgateway reload
+	
 	sudo service ysfgateway status
 
 YSFParrot
+
 	sudo service ysfparrot start
+	
 	sudo service ysfparrot stop
+	
 	sudo service ysfparrot reload
+	
 	sudo service ysfparrot status
 
 Telegrambot
+
 	sudo service ircddbgateway start
+	
 	sudo service ircddbgateway stop
+	
 	sudo service ircddbgateway reload
+	
 	sudo service ircddbgateway status
 
 # Comando per l'avvio automatico servizio
@@ -135,6 +156,6 @@ ircDDBGateway
 	
 	AUDIO File and Reflector list
 	
-        /usr/local/share/opendv
+	/usr/local/share/opendv
 
 
