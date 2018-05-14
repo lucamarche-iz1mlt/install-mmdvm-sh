@@ -1,5 +1,5 @@
 
-# INSTALLAZIONE MMDVM Raspeberry PI su Debian 9             
+# INSTALLAZIONE MMDVM Raspberry PI su Debian 9             
 
 
 Scaricare il pacchetto da terminale tramite il comando  
