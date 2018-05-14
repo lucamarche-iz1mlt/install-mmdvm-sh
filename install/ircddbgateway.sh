@@ -3,6 +3,7 @@ PATH_RUN_SCRIPT=$1
 LOG_PATH_DMRGATEWAY=$2
 CONFIG_PATH_DMRGATEWAY=$3
 PATH_EXEC=$4
+N_CPU=$5
 
 	git clone https://github.com/g4klx/DMRGateway.git /home/pi/MMDVM/DMRGateway
 	cd /home/pi/MMDVM/DMRGateway/

@@ -57,31 +57,31 @@ apt-get install git build-essential libwxgtk3.0-dev portaudio19-dev libusb-1.0-0
 apt-get autoremove
 
 
-echo 'Vuoi inatallare MMDVMHost? (y/n)'
+echo 'Vuoi installare MMDVMHost? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	sh ${PATH_RUN_SCRIPT}/install/mmdvmhost.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_MMDVMHOST} ${CONFIG_PATH_MMDVMHOST} ${PATH_EXEC}
+	sh ${PATH_RUN_SCRIPT}/install/mmdvmhost.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_MMDVMHOST} ${CONFIG_PATH_MMDVMHOST} ${PATH_EXEC} ${N_CPU}
 fi
 
-echo 'Vuoi inatallare DMRGateway? (y/n)'
+echo 'Vuoi installare DMRGateway? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	sh ${PATH_RUN_SCRIPT}/install/dmrgateway.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_DMRGATEWAY} ${CONFIG_PATH_DMRGATEWAY} ${PATH_EXEC}
+	sh ${PATH_RUN_SCRIPT}/install/dmrgateway.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_DMRGATEWAY} ${CONFIG_PATH_DMRGATEWAY} ${PATH_EXEC} ${N_CPU}
 fi
 
-echo 'Vuoi inatallare YSFClients? (y/n)'
+echo 'Vuoi installare YSFClients? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	sh ${PATH_RUN_SCRIPT}/install/ysfclients.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_YSFGATEWAY} ${CONFIG_PATH_YSFGATEWAY} ${PATH_EXEC}
+	sh ${PATH_RUN_SCRIPT}/install/ysfclients.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_YSFGATEWAY} ${CONFIG_PATH_YSFGATEWAY} ${PATH_EXEC} ${N_CPU}
 fi
 
-echo 'Vuoi inatallare ircDDBGateway? (y/n)'
+echo 'Vuoi installare ircDDBGateway? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	sh ${PATH_RUN_SCRIPT}/install/ircddbgateway.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_IRCDDBGATEWAY} ${CONFIG_PATH_IRCDDBGATEWAY} ${PATH_EXEC}
+	sh ${PATH_RUN_SCRIPT}/install/ircddbgateway.sh ${PATH_RUN_SCRIPT} ${LOG_PATH_IRCDDBGATEWAY} ${CONFIG_PATH_IRCDDBGATEWAY} ${PATH_EXEC} ${N_CPU}
 fi
 
-echo 'Vuoi inatallare i servizi bot telegram? (y/n)'
+echo 'Vuoi installare i servizi bot telegram? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
 	sh ${PATH_RUN_SCRIPT}/install/telegrambot.sh
@@ -89,46 +89,22 @@ fi
 
 cp -R ${PATH_RUN_SCRIPT}/script /home/pi/
 
-# echo 'Configurazione DVMega'
-# systemctl stop serial-getty@ttyAMA0.service
-# systemctl disable serial-getty@ttyAMA0.service
-
-# echo 'Rimuovere la parte console=/dev/ttyAMA0.... or console=serial0 nel file che si aprirà tra poco....'
-# sleep 5
-# nano /boot/cmdline.txt
-
-# echo 'Configurazione DVmega solo PI3'
-# cd /boot/
-# echo 'lettura file'
-# DVMEGA_CONFIG=$(grep -e "dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yesrootwait" /boot/cmdline.txt)
-# if [ -z $DVMEGA_CONFIG_TEST ]; then
-# {
-	# CAT_FILE=$(cat cmdline.txt )
-	# echo 'comento stringa /cmdline.txt'
-	# sed -i "s/${CAT_FILE}/# ${CAT_FILE}/g" cmdline.txt
-	# echo 'dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yesrootwait' >> cmdline.txt
-# }
-# fi
-
-# DVMEGA_CONFIG=$(grep -e "# Modification Bluetooth" /boot/config.txt)
-# if [ -z $DVMEGA_CONFIG_TEST ]; then
-# {
-	# echo 'disabilito bluethoot'
-	# echo '# Modification Bluetooth' >> config.txt
-	# echo 'dtoverlay=pi3-disable-bt' >> config.txt
-# }
-# fi
-
 echo 'Vuoi installare dashboard? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
 	sh ${PATH_RUN_SCRIPT}/install/dashboard.sh
 fi
 
-echo 'Vuoi inatallare buttonoff? (y/n)'
+echo 'Vuoi installare buttonoff? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
 	sh ${PATH_RUN_SCRIPT}/install/buttonoff.sh ${PATH_FILEEXECBUTTON} ${FILE_NAME}
+fi
+
+echo 'Vuoi installare OpenVPN? (y/n)'
+read VAR
+if [ $VAR = "y" ]; then
+	sh ${PATH_RUN_SCRIPT}/install/openvpn.sh
 fi
 
 systemctl daemon-reload

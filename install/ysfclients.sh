@@ -4,6 +4,7 @@ PATH_RUN_SCRIPT=$1
 LOG_PATH_YSFGATEWAY=$2
 CONFIG_PATH_YSFGATEWAY=$3
 PATH_EXEC=$4
+N_CPU=$5
 
 	git clone https://github.com/g4klx/YSFClients.git /home/pi/MMDVM/YSFClients
 	cd /home/pi/MMDVM/YSFClients/YSFGateway/
