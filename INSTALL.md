@@ -105,11 +105,9 @@ sudo crontab -e
 
 aggiungere in fondo al file
 
-*/5 * * * * wget -O /var/log/ysfgateway/YSFHosts.txt http://register.ysfreflector.de/export_csv.php
-
-0  0  *  *  * sh /home/pi/script/DMRIDUpdate.sh 1>/dev/null 2>&1
-
-0  0  *  *  * wget -O /var/log/mmdvmhost/NXDN.csv http://nxmanager.weebly.com/uploads/7/1/2/0/71209569/nxuid_export.csv
+	*/5 * * * * wget -O /var/log/ysfgateway/YSFHosts.txt http://register.ysfreflector.de/export_csv.php
+	0  0  *  *  * sh /home/pi/script/DMRIDUpdate.sh 1>/dev/null 2>&1
+	0  0  *  *  * wget -O /var/log/mmdvmhost/NXDN.csv http://nxmanager.weebly.com/uploads/7/1/2/0/71209569/nxuid_export.csv
 
 
 # Percorsi file
