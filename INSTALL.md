@@ -1,5 +1,5 @@
 
-# INSTALLAZIONE MMDVM Raspebrry PI             
+# INSTALLAZIONE MMDVM Raspeberry PI su Debian 9             
 
 
 Scaricare il pacchetto da terminale tramite il comando  
@@ -13,6 +13,9 @@ Scaricare il pacchetto da terminale tramite il comando
 	sudo sh mmdvm.sh
 
 	attendere fine istallazione....
+Disinstallazione tramite comando
+
+	sudo mmdvm_uninstall.sh
 
 # Comandi di avvio servizi
 
