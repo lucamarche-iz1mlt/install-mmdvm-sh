@@ -23,6 +23,7 @@ CONFIG_PATH_DMRGATEWAY="/etc/dmrgateway/"
 CONFIG_PATH_YSFGATEWAY="/etc/ysfgateway/"
 CONFIG_PATH_IRCDDBGATEWAY="/etc/ircddbgateway/"
 PATH_EXEC="/usr/local/bin/"
+PATH_RUN_SCRIPT=$(pwd)"/"
 
 FILE_NAME="buttonoff" 			#Nome senza estersione
 PATH_FILEEXECBUTTON="/usr/local/bin/" 	#Destinazione programma python
@@ -50,7 +51,7 @@ apt-get update
 apt-get upgrade
 apt-get install git build-essential libwxgtk3.0-dev portaudio19-dev libusb-1.0-0-dev chkconfig python-pip lighttpd php
 
-#apt-get -f upgrade
+# apt-get -f upgrade
 apt-get autoremove
 
 
@@ -79,9 +80,9 @@ if [ $VAR = "y" ]; then
 	# nano MMDVM.ini
 
 	cp -R /home/pi/MMDVM/MMDVMHost/MMDVM.ini ${CONFIG_PATH_MMDVMHOST}
-    cp -R /home/pi/MMDVM/MMDVMHost/NXDN.csv ${LOG_PATH_MMDVMHOST}
-	cp -R /home/pi/installazione_mmdvm/mmdvmhost.service /lib/systemd/system/
-	cp -R /home/pi/installazione_mmdvm/mmdvmhost.timer /lib/systemd/system/
+	cp -R /home/pi/MMDVM/MMDVMHost/NXDN.csv ${LOG_PATH_MMDVMHOST}
+	cp -R ${PATH_RUN_SCRIPT}mmdvmhost.service /lib/systemd/system/
+	cp -R ${PATH_RUN_SCRIPT}mmdvmhost.timer /lib/systemd/system/
 	chmod 755 /lib/systemd/system/mmdvmhost.service
 	chmod 755 /lib/systemd/system/mmdvmhost.timer
 fi
@@ -115,8 +116,8 @@ if [ $VAR = "y" ]; then
 	cp -R /home/pi/MMDVM/DMRGateway/DMRGateway.ini ${CONFIG_PATH_DMRGATEWAY}
 	cp -R /home/pi/MMDVM/DMRGateway/XLXHosts.txt ${LOG_PATH_DMRGATEWAY}
 	cp -R /home/pi/MMDVM/DMRGateway/Audio ${CONFIG_PATH_DMRGATEWAY}
-	cp -R /home/pi/installazione_mmdvm/dmrgateway.service /lib/systemd/system/
-	cp -R /home/pi/installazione_mmdvm/dmrgateway.timer /lib/systemd/system/
+	cp -R ${PATH_RUN_SCRIPT}dmrgateway.service /lib/systemd/system/
+	cp -R ${PATH_RUN_SCRIPT}dmrgateway.timer /lib/systemd/system/
 	chmod 755 /lib/systemd/system/dmrgateway.service	
 	chmod 755 /lib/systemd/system/dmrgateway.timer
 fi
@@ -152,10 +153,10 @@ if [ $VAR = "y" ]; then
 	fi
 
 	cp -R /home/pi/MMDVM/YSFClients/YSFParrot/YSFParrot ${PATH_EXEC}
-	cp -R /home/pi/installazione_mmdvm/ysfgateway.service /lib/systemd/system/	
-	cp -R /home/pi/installazione_mmdvm/ysfparrot.service /lib/systemd/system/	
-	cp -R /home/pi/installazione_mmdvm/ysfgateway.timer /lib/systemd/system/
-	cp -R /home/pi/installazione_mmdvm/ysfparrot.timer /lib/systemd/system/
+	cp -R ${PATH_RUN_SCRIPT}ysfgateway.service /lib/systemd/system/	
+	cp -R ${PATH_RUN_SCRIPT}ysfparrot.service /lib/systemd/system/	
+	cp -R ${PATH_RUN_SCRIPT}ysfgateway.timer /lib/systemd/system/
+	cp -R ${PATH_RUN_SCRIPT}ysfparrot.timer /lib/systemd/system/
 	chmod 755 /lib/systemd/system/ysfgateway.service
 	chmod 755 /lib/systemd/system/ysfparrot.service
 	chmod 755 /lib/systemd/system/ysfgateway.timer
@@ -181,9 +182,9 @@ if [ $VAR = "y" ]; then
 	mkdir -p ${LOG_PATH_IRCDDBGATEWAY}
 	chmod -R 777 ${CONFIG_PATH_IRCDDBGATEWAY}
 	chmod -R 777 ${LOG_PATH_IRCDDBGATEWAY}
-	cp -R /home/pi/installazione_mmdvm/ircddbgateway ${CONFIG_PATH_IRCDDBGATEWAY}
-	cp -R /home/pi/installazione_mmdvm/ircddbgatewayd.service /lib/systemd/system/
-	cp -R /home/pi/installazione_mmdvm/ircddbgatewayd.timer /lib/systemd/system/
+	cp -R ${PATH_RUN_SCRIPT}ircddbgateway ${CONFIG_PATH_IRCDDBGATEWAY}
+	cp -R ${PATH_RUN_SCRIPT}ircddbgatewayd.service /lib/systemd/system/
+	cp -R ${PATH_RUN_SCRIPT}ircddbgatewayd.timer /lib/systemd/system/
 	chmod 755 /lib/systemd/system/ircddbgatewayd.service
 	chmod 755 /lib/systemd/system/ircddbgatewayd.timer
 	
@@ -197,16 +198,14 @@ if [ $VAR = "y" ]; then
 
 	echo 'Crezione dei servizi.....'
 
-	cp -R /home/pi/installazione_mmdvm/telegrambot.service /lib/systemd/system/
-	cp -R /home/pi/installazione_mmdvm/telegrambot.timer /lib/systemd/system/
+	cp -R ${PATH_RUN_SCRIPT}telegrambot.service /lib/systemd/system/
+	cp -R ${PATH_RUN_SCRIPT}telegrambot.timer /lib/systemd/system/
 	chmod 755 /lib/systemd/system/telegrambot.service
 	chmod 755 /lib/systemd/system/telegrambot.timer
 
 fi
 
-systemctl daemon-reload
-
-cp -R /home/pi/installazione_mmdvm/script /home/pi/
+cp -R ${PATH_RUN_SCRIPT}script /home/pi/
 
 # echo 'Configurazione DVMega'
 # systemctl stop serial-getty@ttyAMA0.service
@@ -238,17 +237,13 @@ cp -R /home/pi/installazione_mmdvm/script /home/pi/
 # }
 # fi
 
-# echo 'Installazione telegrambot...'
-# cp -R /home/pi/installazione_mmdvm/telegrambot.py /home/pi/
-# nano /home/pi/telegrambot.py
-
 echo 'Vuoi inatallare dashboard? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
 	echo 'installazione dashboard....'
 
 	cd /var/www/html/
-	git clone https://github.com/dg9vh/MMDVMHost-Dashboard.git
+	git clone https://github.com/dg9vh/MMDVMHost-Dashboard.git ./MMDVMHost-Dashboard
 
 	groupadd www-data
 	usermod -G www-data -a pi
