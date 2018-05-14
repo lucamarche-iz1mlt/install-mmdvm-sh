@@ -38,7 +38,7 @@ def handle(msg):
       	out = commands.getoutput("sudo service dmrgateway restart")	
 		
     elif command == '/reboot':     	
-        out = commands.getoutput("sudo reboot")
+        out = commands.getoutput("sudo shutdown -r -t 1")
         bot.sendMessage(chat_id, "Riavvio in corso...")
 		
     elif command == '/off':  
