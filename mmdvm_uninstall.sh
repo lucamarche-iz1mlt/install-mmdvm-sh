@@ -52,6 +52,8 @@ rm -R /home/pi/MMDVM
 echo 'Eliminazione dashbord....'
 rm -R /var/www/html/MMDVMHost-Dashboard/
 
+rm -R /home/pi/script/
+
 systemctl daemon-reload
 
 echo 'Fine'
