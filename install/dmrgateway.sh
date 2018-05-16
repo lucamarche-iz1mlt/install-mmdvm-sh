@@ -31,9 +31,9 @@ N_CPU=$5
 	cp -R /home/pi/MMDVM/DMRGateway/DMRGateway.ini ${CONFIG_PATH_DMRGATEWAY}
 	cp -R /home/pi/MMDVM/DMRGateway/XLXHosts.txt ${LOG_PATH_DMRGATEWAY}
 	cp -R /home/pi/MMDVM/DMRGateway/Audio ${CONFIG_PATH_DMRGATEWAY}
-	cp -R ${PATH_RUN_SCRIPT}/service/dmrgateway.service /lib/systemd/system/
-	cp -R ${PATH_RUN_SCRIPT}/service/dmrgateway.timer /lib/systemd/system/
-	chmod 755 /lib/systemd/system/dmrgateway.service	
-	chmod 755 /lib/systemd/system/dmrgateway.timer
+	cp -R ${PATH_RUN_SCRIPT}/service/dmrgatewayd.service /lib/systemd/system/
+	cp -R ${PATH_RUN_SCRIPT}/service/dmrgatewayd.timer /lib/systemd/system/
+	chmod 755 /lib/systemd/system/dmrgatewayd.service	
+	chmod 755 /lib/systemd/system/dmrgatewayd.timer
 	
 exit 0
