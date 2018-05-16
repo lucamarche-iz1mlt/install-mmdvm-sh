@@ -52,8 +52,8 @@
 DMRIDPATH=/var/log/mmdvm
 DMRIDFILE=/${DMRIDPATH}/DMRIds.dat
 #
-# DMR-MARC.net has discontinued real time access. Now they offer a nightly dump instead.
-DATABASEURL='https://www.dmr-marc.net/static/users.csv'
+# DMR IDs now served by RadioID.net
+DATABASEURL='https://www.radioid.net/static/users.csv'
 #
 # How many DMR ID files do you want backed up (0 = do not keep backups)
 DMRFILEBACKUP=1
@@ -69,7 +69,7 @@ RESTARTCOMMAND="systemctl restart mmdvmhost.service"
 ###############################################################################
 
 # Check we are root
-if [ "$(id -u)" != "0" ]
+if [ "$(id -u)" != "0" ] 
 then
 	echo "This script must be run as root" 1>&2
 	exit 1
