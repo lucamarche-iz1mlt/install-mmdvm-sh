@@ -57,15 +57,6 @@ N_CPU=$5
 	chmod 755 /lib/systemd/system/mmdvmhost.service
 	chmod 755 /lib/systemd/system/mmdvmhost.timer
 	
-	echo 'Vuoi installare Wiring PI? y/n (consigliato)'
-	read VAR
-	if [ $VAR = "y" ]; then
-    		echo 'Installazione Wiring PI....'
-		git clone git://git.drogon.net/wiringPi
-		cd wiringPi
-		sudo ./build
-	fi
-
 exit 0
 
 

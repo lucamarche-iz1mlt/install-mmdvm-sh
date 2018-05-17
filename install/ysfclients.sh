@@ -18,7 +18,7 @@ N_CPU=$5
 
 	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/YSFGateway ${PATH_EXEC}
 	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/FCSRooms.txt ${CONFIG_PATH_YSFGATEWAY}
-	
+
 	mkdir -p ${CONFIG_PATH_YSFGATEWAY}
 	mkdir -p ${LOG_PATH_YSFGATEWAY}
 	chmod -R 777 ${CONFIG_PATH_YSFGATEWAY}
