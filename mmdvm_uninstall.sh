@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 #---------------------------------Carico percorsi da script di installazione-----------------------------------------------------
 PATH_FILE_INSTAL_MMDVM=$(pwd)"/mmdvm.sh"
 
