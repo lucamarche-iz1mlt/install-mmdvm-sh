@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 PATH_RUN_SCRIPT=$1
 

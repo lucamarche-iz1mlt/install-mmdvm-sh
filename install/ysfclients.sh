@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 PATH_RUN_SCRIPT=$1
 LOG_PATH_YSFGATEWAY=$2
@@ -23,6 +23,7 @@ N_CPU=$5
 	mkdir -p ${LOG_PATH_YSFGATEWAY}
 	chmod -R 777 ${CONFIG_PATH_YSFGATEWAY}
 	chmod -R 777 ${LOG_PATH_YSFGATEWAY}
+
 	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/YSFGateway.ini ${CONFIG_PATH_YSFGATEWAY}
 
 	cd /home/pi/MMDVM/YSFClients/YSFParrot/

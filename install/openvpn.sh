@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
     echo 'installazione di OpenVPN....'
 	sleep 2

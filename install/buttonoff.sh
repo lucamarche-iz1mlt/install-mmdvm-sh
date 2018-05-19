@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 PATH_FILEEXECBUTTON=$1
 FILE_NAME=$2
