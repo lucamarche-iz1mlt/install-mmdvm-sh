@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 ################################################################################
 # Shellscript:  base.sh - visualizza un numero in basi differenti (Bourne Shell)
 # Autore     :  Luca Marchesano IZ1MLT (iz1mlt@hotmail.it)
@@ -84,7 +84,7 @@ fi
 echo 'Vuoi installare i servizi bot telegram? (y/n)'
 read VAR
 if [ $VAR = "y" ]; then
-	sh ${PATH_RUN_SCRIPT}/install/telegrambot.sh
+	sh ${PATH_RUN_SCRIPT}/install/telegrambot.sh ${PATH_RUN_SCRIPT}
 fi
 
 cp -R ${PATH_RUN_SCRIPT}/script /home/pi/
