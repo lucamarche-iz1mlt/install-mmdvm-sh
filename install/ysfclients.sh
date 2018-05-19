@@ -15,15 +15,14 @@ N_CPU=$5
 	else
 		make -j$N_CPU all
 	fi
-
-	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/YSFGateway ${PATH_EXEC}
-	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/FCSRooms.txt ${CONFIG_PATH_YSFGATEWAY}
-
+	
 	mkdir -p ${CONFIG_PATH_YSFGATEWAY}
 	mkdir -p ${LOG_PATH_YSFGATEWAY}
 	chmod -R 777 ${CONFIG_PATH_YSFGATEWAY}
 	chmod -R 777 ${LOG_PATH_YSFGATEWAY}
-
+	
+	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/YSFGateway ${PATH_EXEC}
+	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/FCSRooms.txt ${CONFIG_PATH_YSFGATEWAY}
 	cp -R /home/pi/MMDVM/YSFClients/YSFGateway/YSFGateway.ini ${CONFIG_PATH_YSFGATEWAY}
 
 	cd /home/pi/MMDVM/YSFClients/YSFParrot/
