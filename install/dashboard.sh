@@ -2,8 +2,7 @@
 
 	echo 'installazione dashboard....'
 
-	cd /var/www/html/
-	git clone https://github.com/dg9vh/MMDVMHost-Dashboard.git ./MMDVMHost-Dashboard
+	git clone https://github.com/dg9vh/MMDVMHost-Dashboard.git /var/www/html/MMDVMHost-Dashboard
 
 	groupadd www-data
 	usermod -G www-data -a pi
