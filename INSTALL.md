@@ -13,6 +13,18 @@ Scaricare il pacchetto da terminale tramite il comando
 	sudo sh mmdvm.sh
 
 	attendere fine istallazione....
+	
+Configurazione file .ini
+	
+	Assicurarsi di essere sempre nella stessa direcory e aprire il file tramite il comando
+	
+	sudo nano MMDVMConfig.sh
+	
+	
+	Una volta salvato lanciare lo script
+
+	sudo bash MMDVMConfig.sh
+
 Disinstallazione tramite comando
 
 	sudo mmdvm_uninstall.sh
