@@ -74,15 +74,15 @@ APRS_PWD=$(curl http://n5dux.com/ham/aprs-passcode/?callsign=$CALLSIGN | grep -e
 #-----------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------#
 
-LOG_PATH_MMDVMHOST=$(grep -e "LOG_PATH_MMDVMHOST=" ${PATH_FILE_INSTAL_MMDVM} | cut -f 2 -d"=" | cut -f 2 -d'"')
-LOG_PATH_DMRGATEWAY=$(grep -e "LOG_PATH_DMRGATEWAY=" ${PATH_FILE_INSTAL_MMDVM} | cut -f 2 -d"=" | cut -f 2 -d'"')
-LOG_PATH_YSFGATEWAY=$(grep -e "LOG_PATH_YSFGATEWAY=" ${PATH_FILE_INSTAL_MMDVM} | cut -f 2 -d"=" | cut -f 2 -d'"')
-LOG_PATH_IRCDDBGATEWAY=$(grep -e "LOG_PATH_IRCDDBGATEWAY=" ${PATH_FILE_INSTAL_MMDVM} | cut -f 2 -d"=" | cut -f 2 -d'"')
+LOG_PATH_MMDVMHOST=$(grep -e "LOG_PATH_MMDVMHOST=" $(pwd)/mmdvm.sh | cut -f 2 -d"=" | cut -f 2 -d'"')
+LOG_PATH_DMRGATEWAY=$(grep -e "LOG_PATH_DMRGATEWAY=" $(pwd)/mmdvm.sh | cut -f 2 -d"=" | cut -f 2 -d'"')
+LOG_PATH_YSFGATEWAY=$(grep -e "LOG_PATH_YSFGATEWAY=" $(pwd)/mmdvm.sh | cut -f 2 -d"=" | cut -f 2 -d'"')
+LOG_PATH_IRCDDBGATEWAY=$(grep -e "LOG_PATH_IRCDDBGATEWAY=" $(pwd)/mmdvm.sh | cut -f 2 -d"=" | cut -f 2 -d'"')
 
-CONFIG_PATH_MMDVMHOST=$(grep -e "CONFIG_PATH_MMDVMHOST=" ${PATH_FILE_INSTAL_MMDVM} | cut -f 2 -d"=" | cut -f 2 -d'"')
-CONFIG_PATH_DMRGATEWAY=$(grep -e "CONFIG_PATH_DMRGATEWAY=" ${PATH_FILE_INSTAL_MMDVM} | cut -f 2 -d"=" | cut -f 2 -d'"')
-CONFIG_PATH_YSFGATEWAY=$(grep -e "CONFIG_PATH_YSFGATEWAY=" ${PATH_FILE_INSTAL_MMDVM} | cut -f 2 -d"=" | cut -f 2 -d'"')
-CONFIG_PATH_IRCDDBGATEWAY=$(grep -e "CONFIG_PATH_IRCDDBGATEWAY=" ${PATH_FILE_INSTAL_MMDVM} | cut -f 2 -d"=" | cut -f 2 -d'"')
+CONFIG_PATH_MMDVMHOST=$(grep -e "CONFIG_PATH_MMDVMHOST=" $(pwd)/mmdvm.sh | cut -f 2 -d"=" | cut -f 2 -d'"')
+CONFIG_PATH_DMRGATEWAY=$(grep -e "CONFIG_PATH_DMRGATEWAY=" $(pwd)/mmdvm.sh | cut -f 2 -d"=" | cut -f 2 -d'"')
+CONFIG_PATH_YSFGATEWAY=$(grep -e "CONFIG_PATH_YSFGATEWAY=" $(pwd)/mmdvm.sh | cut -f 2 -d"=" | cut -f 2 -d'"')
+CONFIG_PATH_IRCDDBGATEWAY=$(grep -e "CONFIG_PATH_IRCDDBGATEWAY=" $(pwd)/mmdvm.sh | cut -f 2 -d"=" | cut -f 2 -d'"')
 
 
 if [ $RPT_OR_HS = "1" ]; then
