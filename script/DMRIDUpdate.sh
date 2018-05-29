@@ -50,7 +50,7 @@
 #
 # Full path to DMR ID file
 DMRIDPATH=/var/log/mmdvm
-DMRIDFILE=/${DMRIDPATH}/DMRIds.dat
+DMRIDFILE=${DMRIDPATH}/DMRIds.dat
 #
 # DMR IDs now served by RadioID.net
 DATABASEURL='https://www.radioid.net/static/users.csv'
