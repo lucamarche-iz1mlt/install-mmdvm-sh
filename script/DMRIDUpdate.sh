@@ -53,7 +53,7 @@ DMRIDPATH=/var/log/mmdvm
 DMRIDFILE=${DMRIDPATH}/DMRIds.dat
 #
 # DMR IDs now served by RadioID.net
-DATABASEURL='https://www.radioid.net/static/users.csv'
+DATABASEURL='https://ham-digital.org/status/users.csv'
 #
 # How many DMR ID files do you want backed up (0 = do not keep backups)
 DMRFILEBACKUP=1
