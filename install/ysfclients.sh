@@ -42,5 +42,7 @@ N_CPU=$5
 	chmod 755 /lib/systemd/system/ysfparrot.service
 	chmod 755 /lib/systemd/system/ysfgateway.timer
 	chmod 755 /lib/systemd/system/ysfparrot.timer
+	#add crontab service update reflector list
+	echo"* /5 *  * * *    root     wget -O /var/log/ysfgateway/YSFHosts.txt http://register.ysfreflector.de/export_csv.php" >> /etc/crontab
 	
 exit 0
