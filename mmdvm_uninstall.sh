@@ -54,8 +54,12 @@ rm -R /var/www/html/MMDVMHost-Dashboard/
 
 rm -R /home/pi/script/
 
+sed -e /home/d -e /log/d /etc/crontab > /tmp/crontabappend
+cat /tmp/crontabappend > /etc/crontab
+rm /tmp/crontabappend
+
 systemctl daemon-reload
 
-echo 'Fine'
+echo 'Fine!! Riavviare il sistema'
 exit 0
 
