@@ -116,15 +116,15 @@ CTRL+C per uscire
 
 # Aggiungere servizio crontab
 
-sudo crontab -e
-
+sudo nano /etc/crontab
+ 
 aggiungere in fondo al file
 
-	*/5 * * * * wget -O /var/log/ysfgateway/YSFHosts.txt http://register.ysfreflector.de/export_csv.php
-	0  0  *  *  * sh /home/pi/script/DMRIDUpdate.sh 1>/dev/null 2>&1
-	0  0  *  *  * wget -O /var/log/mmdvmhost/NXDN.csv http://nxmanager.weebly.com/uploads/7/1/2/0/71209569/nxuid_export.csv
-
-
+	*/5 *   * * *   root    wget -O /var/log/ysfgateway/YSFHosts.txt http://register.ysfreflector.de/export_csv.php
+	 0 0    * * *   root    wget -O /var/log/mmdvmhost/NXDN.csv http://nxmanager.weebly.com/uploads/7/1/2/0/71209569/nxuid_export.csv
+	 0 0    * * *   root    sh /home/pi/script/DMRIDUpdate.sh 1>/dev/null 2>&1
+	 
+	 
 # Percorsi file
 
 MMDVMHost
