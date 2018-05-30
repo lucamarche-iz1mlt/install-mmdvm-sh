@@ -23,6 +23,7 @@ RX_INV="0"
 DS_EN="1"
 MODULE="B"
 IRC_EN="0"
+QUADNET_EN="0"
 IRC_PWD=""     
 DPLUS_EN="1"
 DEXTRA_EN="1"
@@ -130,7 +131,7 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	printf "\n\n[Modem]\nPort=${PORT_MODEM}\nTXInvert=${TX_INV}\nRXInvert=${RX_INV}\nPTTInvert=0\nTXDelay=100\nRXOffset=0\nTXOffset=0\nDMRDelay=0\nRXLevel=50\nTXLevel=50\nRXDCOffset=0\nTXDCOffset=0\nRFLevel=100\n# CWIdTXLevel=50\n# D-StarTXLevel=50\n# DMRTXLevel=50\n# YSFTXLevel=50\n# P25TXLevel=50\n# NXDNTXLevel=50\nRSSIMappingFile=RSSI.dat\nTrace=0\nDebug=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[Transparent Data]\nEnable=0\nRemoteAddress=127.0.0.1\nRemotePort=40094\nLocalPort=40095" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[UMP]\nEnable=0\n# Port=\\.\COM4\n# Port=/dev/ttyACM1" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
-	printf "\n\n[D-Star]\nEnable=${DS_EN}\nModule=${MODULE}\nSelfOnly=0\nAckReply=1\nAckTime=750\nErrorReply=1\nRemoteGateway=0\n# ModeHang=10" >>${PATH_FILEEXECBUTTON}MMDVM.ini
+	printf "\n\n[D-Star]\nEnable=${DS_EN}\nModule=${MODULE}\nSelfOnly=0\nAckReply=1\nAckTime=750\nErrorReply=1\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[DMR]\nEnable=${DMR_EN}\nBeacons=1\nBeaconInterval=180\nBeaconDuration=3\nColorCode=${CC}\nSelfOnly=0\nEmbeddedLCOnly=0\nDumpTAData=${TA}\n# Prefixes=234,235\n# Slot1TGWhiteList=\n# Slot2TGWhiteList=\nCallHang=3\nTXHang=4\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[System Fusion]\nEnable=${YSF_EN}\nLowDeviation=0\nSelfOnly=0\nTXHang=4\n# DGID=1\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[P25]\nEnable=0\nNAC=293\nSelfOnly=0\nOverrideUIDCheck=0\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
@@ -187,7 +188,7 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	printf "\nrepeaterCall2=\nrepeaterBand2=\nrepeaterType2=0\nrepeaterAddress2=127.0.0.1\nrepeaterPort2=20012\nreflector2=\natStartup2=0\nreconnect2=0\nfrequency2=0.00000\noffset2=0.0000\nrangeKms2=0.000\nlatitude2=0.000000\nlongitude2=0.000000\nagl2=0.000\ndescription2_1=\ndescription2_2=\nurl2=\nband2_1=0\nband2_2=0\nband2_3=0" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\nrepeaterCall3=\nrepeaterBand3=\nrepeaterType3=0\nrepeaterAddress3=127.0.0.1\nrepeaterPort3=20012\nreflector3=\natStartup3=0\nreconnect3=0\nfrequency3=0.00000\noffset3=0.0000\nrangeKms3=0.000\nlatitude3=0.000000\nlongitude3=0.000000\nagl3=0.000\ndescription3_1=\ndescription3_2=\nurl2=\nband3_1=0\nband3_2=0\nband3_3=0" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\nrepeaterCall4=\nrepeaterBand2=\nrepeaterType4=0\nrepeaterAddress4=127.0.0.1\nrepeaterPort4=20012\nreflector4=\natStartup4=0\nreconnect4=0\nfrequency4=0.00000\noffset4=0.0000\nrangeKms4=0.000\nlatitude4=0.000000\nlongitude4=0.000000\nagl4=0.000\ndescription4_1=\ndescription4_2=\nurl4=\nband4_1=0\nband4_2=0\nband4_3=0" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
-	printf "\nircddbEnabled=${IRC_EN}\nircddbHostname=rr.openquad.net\nircddbUsername=${CALLSIGN}\nircddbPassword=${IRC_PWD}\nircddbEnabled2=0\nircddbHostname2=rr.openquad.net\nircddbUsername2=\nircddbPassword2=\nircddbEnabled3=0\nircddbHostname3=\nircddbUsername3=\nircddbPassword3=\nircddbEnabled4=0\nircddbHostname4=\nircddbUsername4=\nircddbPassword4=" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
+	printf "\nircddbEnabled=${IRC_EN}\nircddbHostname=group1-irc.ircddb.net\nircddbUsername=${CALLSIGN}\nircddbPassword=${IRC_PWD}\nircddbEnabled2=${QUADNET_EN}\nircddbHostname2=rr.openquad.net\nircddbUsername2=${CALLSIGN}\nircddbPassword2=${IRC_PWD}\nircddbEnabled3=0\nircddbHostname3=\nircddbUsername3=\nircddbPassword3=\nircddbEnabled4=0\nircddbHostname4=\nircddbUsername4=\nircddbPassword4=" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\naprsEnabled=${APRS_EN}\naprsHostname=${APRS_HOST}\naprsPort=${APRS_PORT}\ndextraEnabled=${DEXTRA_EN}" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\ndextraMaxDongles=5\ndplusEnabled=${DPLUS_EN}\ndplusMaxDongles=5\ndplusLogin=${CALLSIGN}" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\ndcsEnabled=1\nccsEnabled=1\nccsHost=CCS701\nxlxEnabled=1\nxlxOverrideLocal=1\nxlxHostsFileUrl=xlxapi.rlx.lu/api.php?do=GetReflectorHostname" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
