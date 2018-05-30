@@ -56,6 +56,9 @@ N_CPU=$5
 	cp -R ${PATH_RUN_SCRIPT}/service/mmdvmhost.timer /lib/systemd/system/
 	chmod 755 /lib/systemd/system/mmdvmhost.service
 	chmod 755 /lib/systemd/system/mmdvmhost.timer
+	#servizio crontab download DMR ID
+	echo " 0 0    * * *   root    sh /home/pi/script/DMRIDUpdate.sh 1>/dev/null 2>&1" >> /etc/crontab
+
 	
 exit 0
 
