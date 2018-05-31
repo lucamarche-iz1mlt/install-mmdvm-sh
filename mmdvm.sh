@@ -5,7 +5,7 @@
 # Data       :  22-01-2018
 # Categoria  :  shell
 # $Id        :  mmdvm.sh ,v 1.0 2018/01/18 9:10:35
-# ==> La riga precedente rappresenta l'ID RCS.
+# 
 ################################################################################
 # Descrizione
 # creazione script per l'installazione di MMDVMHost e DMRGateway
@@ -51,7 +51,7 @@ echo 'Aggiornamento e installazione dei pachetti neccessari'
 
 apt-get update
 apt-get upgrade
-apt-get install git build-essential libwxgtk3.0-dev portaudio19-dev libusb-1.0-0-dev chkconfig python-pip lighttpd php
+apt-get install git build-essential libwxgtk3.0-dev portaudio19-dev libusb-1.0-0-dev chkconfig python-pip lighttpd
 
 # apt-get -f upgrade
 apt-get autoremove
