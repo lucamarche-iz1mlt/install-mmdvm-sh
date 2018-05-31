@@ -122,7 +122,6 @@ else
 fi
 
 
-
 SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 
 	rm  ${CONFIG_PATH_MMDVMHOST}MMDVM.ini
@@ -155,7 +154,7 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	nano ${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 
 # YSFGATEWEAY
-
+if [ $YSF_EN = "1" ] || [ $FCS_EN = "1" ]; then
 	rm ${CONFIG_PATH_YSFGATEWAY}YSFGateway.ini
 
 	printf "[General]\nCallsign=${CALLSIGN}\nSuffix=${YSF_SUFFIX}\nId=${DMR_ID}\nRptAddress=127.0.0.1\nRptPort=3200\nLocalAddress=127.0.0.1\nLocalPort=4200\nDaemon=0" >>${CONFIG_PATH_YSFGATEWAY}YSFGateway.ini
@@ -167,9 +166,10 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	printf "\n\n[FCS Network]\nEnable=${FCS_EN}\nRooms=${LOG_PATH_YSFGATEWAY}FCSRooms.txt\nPort=42001" >>${CONFIG_PATH_YSFGATEWAY}YSFGateway.ini
 
 	nano ${CONFIG_PATH_YSFGATEWAY}YSFGateway.ini
+fi
 
 # DMRGATEWAY
-
+if [ $DMR_EN = "1" ]; then
 	rm ${CONFIG_PATH_DMRGATEWAY}DMRGateway.ini
 
 	printf "[General]\nTimeout=10\n# RFTimeout=10\n# NetTimeout=7\nRptAddress=127.0.0.1\nRptPort=62032\nLocalAddress=127.0.0.1\nLocalPort=62031\nRuleTrace=0\nDaemon=0\nDebug=0" >>${CONFIG_PATH_DMRGATEWAY}DMRGateway.ini
@@ -182,11 +182,11 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	printf "\n\n# Local HBLink network\n[DMR Network 3]\nEnabled=0\nName=HBLink\nAddress=44.131.4.2\nPort=55555\n# Local=3352\n# Local area TG on to slot 2 TG11\nTGRewrite=2,11,2,11,1\nPassword=PASSWORD\nLocation=0\nDebug=0" >>${CONFIG_PATH_DMRGATEWAY}DMRGateway.ini
 
 	nano ${CONFIG_PATH_DMRGATEWAY}DMRGateway.ini
+fi
 
 # IRCDDBGATEWAY
-
+if [ $DS_EN = "1" ]; then
 	rm ${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
-
 
 	printf "gatewayType=1\ngatewayCallsign=${CALLSIGN}\ngatewayAddress=0.0.0.0\nicomAddress=127.0.0.1\nicomPort=20000\nhbAddress=127.0.0.1\nhbPort=20010\nlatitude=${LAT}\nlongitude=${LONG}\ndescription1=${DESCRIPTION}\ndescription2=${DESCRIPTION}\nurl=${URL}" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\nrepeaterCall1=${CALLSIGN}\nrepeaterBand1=${MODULE}\nrepeaterType1=0\nrepeaterAddress1=127.0.0.1\nrepeaterPort1=20011\nreflector1=${DS_STARTUP} ${REF_MODULE}\natStartup1=1\nreconnect1=0\nfrequency1=${FREQ_TX}\noffe1=${SHIFT: -9: -8}${SHIFT: -8: -7}${SHIFT: -7: -6}.${SHIFT: -6}\nrangeKms1=1.000\nlatitude1=${LAT}\nlongitude1=${LONG}\nagl1=3.000\ndescription1_1=${DESCRIPTION}\ndescription1_2=${DESCRIPTION}\nurl1=${URL}\nband1_1=0\nband1_2=0\nband1_3=0" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
@@ -205,6 +205,7 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	printf "\nremoteEnabled=${REMOTE_EN}\nremotePassword=${REMOTE_PWD}\nremotePort=${REMOTE_PORT}\nlanguage=${LANGUAGE_NUM}\ninfoEnabled=1\nechoEnabled=1\nlogEnabled=1\ndratsEnabled=1\ndtmfEnabled=1\nwindowX=290\nwindowY=284" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 
 	nano ${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
+fi
 
 exit 0
 
