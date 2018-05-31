@@ -14,7 +14,7 @@ Software installing:
 * Button power OFF
 * OpenVPN
 
-Read README.txt for exec the script.
+Read INSTALL.md for exec the script.
 
 For more info:
 
