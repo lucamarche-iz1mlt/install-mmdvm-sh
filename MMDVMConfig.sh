@@ -32,19 +32,19 @@ REF_MODULE="K"
 REMOTE_EN="0"
 REMOTE_PWD="password"
 REMOTE_PORT="10022"
-LANGUIGE="Italiano"
-#languige support
-#		 0   English(UK) 
-#  		 1   Deutsch 
-#		 2   Dansk 
-#   		 3   Italiano 
-#   		 4   Francais 
-#   		 5   Espanol 
-#   		 6   Svenska 
-#   		 7   Polski 
-#   		 8   English(US) 
-#   		 9   Nederlands(NL) 
-#   		10   Nederland(BE)
+LANGUAGE="Italiano"
+#language list
+#                0   English(UK)
+#                1   Deutsch
+#                2   Dansk
+#                3   Francais
+#                4   Italiano
+#                5   Espanol
+#                6   Svenska
+#                7   Polski
+#                8   English(US)
+#                9   Nederlands(NL)
+#               10   Nederland(BE)
 
 # DMR
 
@@ -95,31 +95,32 @@ else
 	YSF_SUFFIX="ND"
 fi
 
-if [ $LANGUIGE = "English(UK)" ]; then
-	LANGUIGE_NUM="0"
-elif [ $LANGUIGE = "Deutsch" ]; then
-	LANGUIGE_NUM="1"
-elif [ $LANGUIGE = "Dansk" ]; then
-	LANGUIGE_NUM="2" 
-elif [ $LANGUIGE = "Italiano" ]; then
-	LANGUIGE_NUM="3"
-elif [ $LANGUIGE = "Francais" ]; then
-	LANGUIGE_NUM="4"
-elif [ $LANGUIGE = "Espanol" ]; then
-	LANGUIGE_NUM="5"
-elif [ $LANGUIGE = "Svenska" ]; then
-	LANGUIGE_NUM="6"
-elif [ $LANGUIGE = "Polski" ]; then
-	LANGUIGE_NUM="7"
-elif [ $LANGUIGE = "English(US)" ]; then
-	LANGUIGE_NUM="8"
-elif [ $LANGUIGE = "Nederlands(NL)" ]; then
-	LANGUIGE_NUM="9"
-elif [ $LANGUIGE = "Nederland(BE)" ]; then
-	LANGUIGE_NUM="10"
+if [ $LANGUAGE = "English(UK)" ]; then
+        LANGUAGE_NUM="0"
+elif [ $LANGUAGE = "Deutsch" ]; then
+        LANGUAGE_NUM="1"
+elif [ $LANGUAGE = "Dansk" ]; then
+        LANGUAGE_NUM="2"
+elif [ $LANGUAGE = "Francais" ]; then
+        LANGUAGE_NUM="3"
+elif [ $LANGUAGE = "Italiano" ]; then
+        LANGUAGE_NUM="4"
+elif [ $LANGUAGE = "Espanol" ]; then
+        LANGUAGE_NUM="5"
+elif [ $LANGUAGE = "Svenska" ]; then
+        LANGUAGE_NUM="6"
+elif [ $LANGUAGE = "Polski" ]; then
+        LANGUAGE_NUM="7"
+elif [ $LANGUAGE = "English(US)" ]; then
+        LANGUAGE_NUM="8"
+elif [ $LANGUAGE = "Nederlands(NL)" ]; then
+        LANGUAGE_NUM="9"
+elif [ $LANGUAGE = "Nederland(BE)" ]; then
+        LANGUAGE_NUM="10"
 else
-	LANGUIGE_NUM="0"
+        LANGUAGE_NUM="0"
 fi
+
 
 
 SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
@@ -201,7 +202,7 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	printf "\nstarNetBand3=B\nstarNetCallsign3=\nstarNetLogoff3=\nstarNetInfo3=\nstarNetPermanent3=\nstarNetUserTimeout3=300\nstarNetGroupTimeout3=300\nstarNetCallsignSwitch3=1\nstarNetTXMsgSwitch3=1\nstarNetReflector3=" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\nstarNetBand4=B\nstarNetCallsign4=\nstarNetLogoff4=\nstarNetInfo4=\nstarNetPermanent4=\nstarNetUserTimeout4=300\nstarNetGroupTimeout4=300\nstarNetCallsignSwitch4=1\nstarNetTXMsgSwitch4=1\nstarNetReflector4=" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\nstarNetBand5=B\nstarNetCallsign5=\nstarNetLogoff5=\nstarNetInfo5=\nstarNetPermanent5=\nstarNetUserTimeout5=300\nstarNetGroupTimeout5=300\nstarNetCallsignSwitch5=1\nstarNetTXMsgSwitch5=1\nstarNetReflector5=" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
-	printf "\nremoteEnabled=${REMOTE_EN}\nremotePassword=${REMOTE_PWD}\nremotePort=${REMOTE_PORT}\nlanguage=${LANGUIGE_NUM}\ninfoEnabled=1\nechoEnabled=1\nlogEnabled=1\ndratsEnabled=1\ndtmfEnabled=1\nwindowX=290\nwindowY=284" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
+	printf "\nremoteEnabled=${REMOTE_EN}\nremotePassword=${REMOTE_PWD}\nremotePort=${REMOTE_PORT}\nlanguage=${LANGUAGE_NUM}\ninfoEnabled=1\nechoEnabled=1\nlogEnabled=1\ndratsEnabled=1\ndtmfEnabled=1\nwindowX=290\nwindowY=284" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 
 	nano ${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 
