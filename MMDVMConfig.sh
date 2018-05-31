@@ -29,9 +29,12 @@ DPLUS_EN="1"
 DEXTRA_EN="1"
 DS_STARTUP="DCS999"
 REF_MODULE="K"
+REMOTE_EN="0"
+REMOTE_PWD="password"
+REMOTE_PORT="10022"
 LANGUIGE="Italiano"
-#launguige support
-#		 0   English (UK) 
+#languige support
+#		 0   English(UK) 
 #  		 1   Deutsch 
 #		 2   Dansk 
 #   		 3   Italiano 
@@ -39,9 +42,9 @@ LANGUIGE="Italiano"
 #   		 5   Espanol 
 #   		 6   Svenska 
 #   		 7   Polski 
-#   		 8   English (US) 
-#   		 9   Nederlands (NL) 
-#   		10   Nederland (BE)
+#   		 8   English(US) 
+#   		 9   Nederlands(NL) 
+#   		10   Nederland(BE)
 
 # DMR
 
@@ -93,28 +96,29 @@ else
 fi
 
 if [ $LANGUIGE = "English(UK)" ]; then
-	LANGUIGE_NUM  ="0"
+	LANGUIGE_NUM="0"
 elif [ $LANGUIGE = "Deutsch" ]; then
-	LANGUIGE_NUM  ="1"
+	LANGUIGE_NUM="1"
 elif [ $LANGUIGE = "Dansk" ]; then
-	LANGUIGE_NUM  ="2" 
+	LANGUIGE_NUM="2" 
 elif [ $LANGUIGE = "Italiano" ]; then
-	LANGUIGE_NUM  ="3"
+	LANGUIGE_NUM="3"
 elif [ $LANGUIGE = "Francais" ]; then
-	LANGUIGE_NUM  ="4"
+	LANGUIGE_NUM="4"
 elif [ $LANGUIGE = "Espanol" ]; then
-	LANGUIGE_NUM  ="5"
+	LANGUIGE_NUM="5"
 elif [ $LANGUIGE = "Svenska" ]; then
-	LANGUIGE_NUM  ="6"
+	LANGUIGE_NUM="6"
 elif [ $LANGUIGE = "Polski" ]; then
-	LANGUIGE_NUM  ="7"
+	LANGUIGE_NUM="7"
 elif [ $LANGUIGE = "English(US)" ]; then
-	LANGUIGE_NUM  ="8"
+	LANGUIGE_NUM="8"
 elif [ $LANGUIGE = "Nederlands(NL)" ]; then
-	LANGUIGE_NUM  ="9"
+	LANGUIGE_NUM="9"
 elif [ $LANGUIGE = "Nederland(BE)" ]; then
-	LANGUIGE_NUM  ="10"
-
+	LANGUIGE_NUM="10"
+else
+	LANGUIGE_NUM="0"
 fi
 
 
@@ -184,7 +188,7 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 
 
 	printf "gatewayType=1\ngatewayCallsign=${CALLSIGN}\ngatewayAddress=0.0.0.0\nicomAddress=127.0.0.1\nicomPort=20000\nhbAddress=127.0.0.1\nhbPort=20010\nlatitude=${LAT}\nlongitude=${LONG}\ndescription1=${DESCRIPTION}\ndescription2=${DESCRIPTION}\nurl=${URL}" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
-	printf "\nrepeaterCall1=${CALLSIGN}\nrepeaterBand1=${MODULE}\nrepeaterType1=0\nrepeaterAddress1=127.0.0.1\nrepeaterPort1=20011\nreflector1=${DS_STARTUP} ${REF_MOSULE}\natStartup1=1\nreconnect1=0\nfrequency1=${FREQ_TX}\noffe1=${SHIFT: -9: -8}${SHIFT: -8: -7}${SHIFT: -7: -6}.${SHIFT: -6}\nrangeKms1=1.000\nlatitude1=${LAT}\nlongitude1=${LONG}\nagl1=3.000\ndescription1_1=${DESCRIPTION}\ndescription1_2=${DESCRIPTION}\nurl1=${URL}\nband1_1=0\nband1_2=0\nband1_3=0" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
+	printf "\nrepeaterCall1=${CALLSIGN}\nrepeaterBand1=${MODULE}\nrepeaterType1=0\nrepeaterAddress1=127.0.0.1\nrepeaterPort1=20011\nreflector1=${DS_STARTUP} ${REF_MODULE}\natStartup1=1\nreconnect1=0\nfrequency1=${FREQ_TX}\noffe1=${SHIFT: -9: -8}${SHIFT: -8: -7}${SHIFT: -7: -6}.${SHIFT: -6}\nrangeKms1=1.000\nlatitude1=${LAT}\nlongitude1=${LONG}\nagl1=3.000\ndescription1_1=${DESCRIPTION}\ndescription1_2=${DESCRIPTION}\nurl1=${URL}\nband1_1=0\nband1_2=0\nband1_3=0" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\nrepeaterCall2=\nrepeaterBand2=\nrepeaterType2=0\nrepeaterAddress2=127.0.0.1\nrepeaterPort2=20012\nreflector2=\natStartup2=0\nreconnect2=0\nfrequency2=0.00000\noffset2=0.0000\nrangeKms2=0.000\nlatitude2=0.000000\nlongitude2=0.000000\nagl2=0.000\ndescription2_1=\ndescription2_2=\nurl2=\nband2_1=0\nband2_2=0\nband2_3=0" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\nrepeaterCall3=\nrepeaterBand3=\nrepeaterType3=0\nrepeaterAddress3=127.0.0.1\nrepeaterPort3=20012\nreflector3=\natStartup3=0\nreconnect3=0\nfrequency3=0.00000\noffset3=0.0000\nrangeKms3=0.000\nlatitude3=0.000000\nlongitude3=0.000000\nagl3=0.000\ndescription3_1=\ndescription3_2=\nurl2=\nband3_1=0\nband3_2=0\nband3_3=0" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\nrepeaterCall4=\nrepeaterBand2=\nrepeaterType4=0\nrepeaterAddress4=127.0.0.1\nrepeaterPort4=20012\nreflector4=\natStartup4=0\nreconnect4=0\nfrequency4=0.00000\noffset4=0.0000\nrangeKms4=0.000\nlatitude4=0.000000\nlongitude4=0.000000\nagl4=0.000\ndescription4_1=\ndescription4_2=\nurl4=\nband4_1=0\nband4_2=0\nband4_3=0" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
@@ -197,7 +201,7 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	printf "\nstarNetBand3=B\nstarNetCallsign3=\nstarNetLogoff3=\nstarNetInfo3=\nstarNetPermanent3=\nstarNetUserTimeout3=300\nstarNetGroupTimeout3=300\nstarNetCallsignSwitch3=1\nstarNetTXMsgSwitch3=1\nstarNetReflector3=" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\nstarNetBand4=B\nstarNetCallsign4=\nstarNetLogoff4=\nstarNetInfo4=\nstarNetPermanent4=\nstarNetUserTimeout4=300\nstarNetGroupTimeout4=300\nstarNetCallsignSwitch4=1\nstarNetTXMsgSwitch4=1\nstarNetReflector4=" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 	printf "\nstarNetBand5=B\nstarNetCallsign5=\nstarNetLogoff5=\nstarNetInfo5=\nstarNetPermanent5=\nstarNetUserTimeout5=300\nstarNetGroupTimeout5=300\nstarNetCallsignSwitch5=1\nstarNetTXMsgSwitch5=1\nstarNetReflector5=" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
-	printf "\nremoteEnabled=1\nremotePassword=mettipassword\nremotePort=10022\nlanguage=${LANGUIGE_NUM}\ninfoEnabled=1\nechoEnabled=1\nlogEnabled=1\ndratsEnabled=1\ndtmfEnabled=1\nwindowX=290\nwindowY=284" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
+	printf "\nremoteEnabled=${REMOTE_EN}\nremotePassword=${REMOTE_PWD}\nremotePort=${REMOTE_PORT}\nlanguage=${LANGUIGE_NUM}\ninfoEnabled=1\nechoEnabled=1\nlogEnabled=1\ndratsEnabled=1\ndtmfEnabled=1\nwindowX=290\nwindowY=284" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 
 	nano ${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 
