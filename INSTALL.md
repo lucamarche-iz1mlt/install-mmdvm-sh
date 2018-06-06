@@ -37,7 +37,7 @@ MMDVMHost
 	
 	sudo service mmdvmhost stop
 	
-	sudo service mmdvmhost reload
+	sudo service mmdvmhost restart
 	
 	sudo service mmdvmhost status
 	
@@ -47,7 +47,7 @@ DMRGateway
 	
 	sudo service dmrgateway stop
 	
-	sudo service dmrgateway reload
+	sudo service dmrgateway restart
 	
 	sudo service dmrgateway status
 
@@ -58,7 +58,7 @@ YSFGateway
 	
 	sudo service ysfgateway stop
 	
-	sudo service ysfgateway reload
+	sudo service ysfgateway restart
 	
 	sudo service ysfgateway status
 
@@ -68,7 +68,7 @@ YSFParrot
 	
 	sudo service ysfparrot stop
 	
-	sudo service ysfparrot reload
+	sudo service ysfparrot restart
 	
 	sudo service ysfparrot status
 
@@ -78,7 +78,7 @@ IrcDDBGateway
 	
 	sudo service ircddbgateway stop
 	
-	sudo service ircddbgateway reload
+	sudo service ircddbgateway restart
 	
 	sudo service ircddbgateway status
 
