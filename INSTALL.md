@@ -1,35 +1,35 @@
 
-# INSTALLAZIONE MMDVM Raspberry PI su Debian 9             
+# INSTALL MMDVM Raspberry PI on Raspbian 9 (Stretch)        
 
 
-Scaricare il pacchetto da terminale tramite il comando  
+Download the package from the terminal using the command:  
 
 	git clone https://github.com/lucamarche-iz1mlt/install-mmdvm-sh.git ./install-mmdvm-sh
 
 	cd install-mmdvm-sh
 
-	Lanciare lo script tramite il comando
-
+	Launch the script using the command
+	
 	sudo sh mmdvm.sh
 
-	attendere fine istallazione....
+	wait for the installation to end ....
 	
-Configurazione file .ini
+Config .ini file
 	
-	Assicurarsi di essere sempre nella stessa direcory e aprire il file tramite il comando
+	Make sure you are always in the same direcory and open the file using the command
 	
 	sudo nano MMDVMConfig.sh
 	
 	
-	Una volta salvato lanciare lo script
-
+	Once saved, run the script
+	
 	sudo bash MMDVMConfig.sh
 
-Disinstallazione tramite comando
+Uninstall by command
 
 	sudo mmdvm_uninstall.sh
 
-# Comandi di avvio servizi
+# Start commands by servicing
 
 MMDVMHost
 
@@ -82,7 +82,7 @@ IrcDDBGateway
 	
 	sudo service ircddbgateway status
 
-# Comando per l'avvio automatico servizio
+# Command for automatic start of service
 	sudo systemctl enable mmdvmhost.timer
 	sudo systemctl enable dmrgateway.timer
 	sudo systemctl enable ysfgatewaty.timer
@@ -90,12 +90,12 @@ IrcDDBGateway
 	sudo systemctl enable ircddbgateway.timer
 	sudo systemctl enable telegrambot.timer
 
-# Disabilitare servizio all'avvio
+# Disable service at startup
 	sudo systemctl disable <nome_servizio>.timer
 
 
-# Avvio programmi in modalità di debug
-Ricordarsi di arrestare il servizio
+# Starting shell programs
+Remember to stop the service
 
 	MMDVMHost
 	sudo MMDVMHost /etc/mmdvmhost/MMDVM.ini
@@ -112,20 +112,20 @@ Ricordarsi di arrestare il servizio
 	Telegrambot
 	sudo python /home/pi/telegrambot.py
 	
-CTRL+C per uscire
+CTRL+C to exit
 
-# Aggiungere servizio crontab
+# Add crontab service
 
 sudo nano /etc/crontab
  
-aggiungere in fondo al file
+add at the bottom of the file
 
 	*/5 *   * * *   root    wget -O /var/log/ysfgateway/YSFHosts.txt http://register.ysfreflector.de/export_csv.php
 	 0 0    * * *   root    wget -O /var/log/mmdvmhost/NXDN.csv http://nxmanager.weebly.com/uploads/7/1/2/0/71209569/nxuid_export.csv
 	 0 0    * * *   root    sh /home/pi/script/DMRIDUpdate.sh 1>/dev/null 2>&1
 	 
 	 
-# Percorsi file
+# File paths
 
 MMDVMHost
 
