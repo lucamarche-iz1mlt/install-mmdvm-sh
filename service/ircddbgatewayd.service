@@ -8,7 +8,7 @@ Type=simple
 # RestartSec=3
 StandardOutput=null
 WorkingDirectory=/usr/local/sbin
-ExecStart=/usr/local/sbin/ircddbgatewayd -logdir /var/log/ircddbgateway -confdir /etc/ircddbgateway 
+ExecStart=/usr/local/bin/ircddbgatewayd -logdir /var/log/ircddbgateway -confdir /etc/ircddbgateway 
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 
