@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # GENERAL SETTING
-
 CALLSIGN="IZ1MLT"
 DMR_ID="2221119"
 RPT_OR_HS="1" # 1 for duplex mode repeater, 0 for simplex mode Hot Spot
@@ -19,7 +18,6 @@ TX_INV="1"
 RX_INV="0"
 
 # DSTAR
-
 DS_EN="1"
 MODULE="B"
 IRC_EN="0"
@@ -47,7 +45,6 @@ LANGUAGE="Italiano"
 #               10   Nederland(BE)
 
 # DMR
-
 DMR_EN="1"
 CC="1"
 TA="1"
@@ -61,10 +58,10 @@ DMRP_EN="0"
 DMRP_IP="93.186.255.126"
 
 # YSF C4FM
-
 YSF_EN="1"
 FCS_EN="1"
 YSFFCS_START="IT C4FM Piemonte"
+YSF_TXHANG="1"
 
 # APRS
 APRS_EN="1"
@@ -72,9 +69,82 @@ APRS_HOST="italy1.aprs2.net"
 APRS_PORT="14580"
 APRS_PWD=$(curl http://n5dux.com/ham/aprs-passcode/?callsign=$CALLSIGN | grep -e "size=24>" | cut -f 5 -d">" | cut -f1 -d"<")
 
+#DASHBOARD
+DASH_EN="1"
+CONFIG_PATH_DASHBOARD="/var/www/html/MMDVMHost-Dashboard/config/"
+
+# -----------------------
+# MMDVMHost-Configuration
+# -----------------------
+Snm="on"				    # Enable extended lookup (show names
+ShTA="on" 				    # Show Talker Alias
+SL3="off"				    # Use SQLITE3-Database instead of DMRIDs.dat
+TGN="on"				    # Enable TG-Names
+
+# ------------------------
+# YSFGateway-Configuration
+# ------------------------
+YSFGat="on"				    # Enable YSFGateway
+YSFlog="YSFGateway"			# Logfile-prefix
+YSFini="YSFGateway.ini"		# YSFGateway.ini-filename
+YSFHos="YSFHotst.txt"		# YSFHosts.txt-filename
+
+# ------------------------
+# DMRGateway-Configuration
+# ------------------------
+DMRGat="on"				    # Enable DMRGateway
+DMRlog="DMRGateway"			# Logfile-prefix
+DMRini="DMRGateway.ini"	    # DMRGateway.ini-filename
+
+# ---------------------------
+# ircddbgateway-Configuration
+# ---------------------------
+ircDDB="ircddbgatewayd"		# Name of ircddbgateway-executeable
+
+# --------------------
+# Global Configuration
+# --------------------
+PathEx="/usr/local/bin/"	# Path to executable files
+TZ="Europe/Rome"			# Timezone
+LOC="en_GB"				    # Locale
+URLlogo=""				    # URL to Logo
+NETphp="on"				    # Use networks.php instead of configuration below
+DMRlogo=""				    # URL to DMRplus-Logo
+BMlogo=""				    # URL to BrandMeister-Logo
+Ref="60"				    # Refresh page after in seconds
+ShCI="on"				    # Show Custom Info
+ShSI="on"				    # Show System Info
+ShDU="on"				    # Show Disk Use	
+ShRI="on"				    # Show Repeater Info
+ShEM="on"				    # Show Enabled Modes
+ShLH="on"				    # Show Last Heard List of today's
+ShLT="on"				    # Show Today's local transmissions
+ShPR="on"				    # Show progressbars
+CPUT="on"				    # Enable CPU-temperature-warning
+WART="60"				    # Warning temperature
+NSF="on"				    # Enable Network-Switching-Function
+DMRRSF="on"				    # Enable Reflector-Switching-Function (DMR)
+YSFRSF="on"				    # Enable Reflector-Switching-Function (YSF)
+UseSN=""				    # Username for switching networks
+PasSN=""				    # Password for switching networks
+MF="on"					    # Enable Management-Functions below
+UseVL=""				    # Username for view log
+PasVL=""				    # Password for view log	
+UseHa=""				    # Username for halt
+PasHa=""				    # Password for halt
+UseRe=""				    # Username for reboot
+PasRe=""				    # Password for reboot
+UseRs=""				    # Username for restart
+PasRs=""				    # Password for restart
+ShPO="on"				    # Show Powerstate (online or battery, wiringpi needed) 
+GPIOMo="18"				    # GPIO pin to monitor
+OnLnSt="1"				    # State that signalizes online-state
+QRZcom="on"				    # Show link to QRZ.com on Callsigns
+RSSI="avg"				    # RSSI value (min, max, avg, all)
+
 #-----------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------#
-#											  #
+#											   	                                          #
 #-----------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------#
 
@@ -132,19 +202,21 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	printf "\n\n[CW Id]\nEnable=1\nTime=10\n# Callsign=" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[DMR Id Lookup]\nFile=${LOG_PATH_MMDVMHOST}DMRIds.dat\nTime=24" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[NXDN Id Lookup]\nFile=${LOG_PATH_MMDVMHOST}NXDN.csv\nTime=24" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
-	printf "\n\n[Modem]\nPort=${PORT_MODEM}\nTXInvert=${TX_INV}\nRXInvert=${RX_INV}\nPTTInvert=0\nTXDelay=100\nRXOffset=0\nTXOffset=0\nDMRDelay=0\nRXLevel=50\nTXLevel=50\nRXDCOffset=0\nTXDCOffset=0\nRFLevel=100\n# CWIdTXLevel=50\n# D-StarTXLevel=50\n# DMRTXLevel=50\n# YSFTXLevel=50\n# P25TXLevel=50\n# NXDNTXLevel=50\nRSSIMappingFile=RSSI.dat\nTrace=0\nDebug=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
-	printf "\n\n[Transparent Data]\nEnable=0\nRemoteAddress=127.0.0.1\nRemotePort=40094\nLocalPort=40095" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
+	printf "\n\n[Modem]\nPort=${PORT_MODEM}\nProtocol=uart\n# Address=0x22\nTXInvert=${TX_INV}\nRXInvert=${RX_INV}\nPTTInvert=0\nTXDelay=100\nRXOffset=0\nTXOffset=0\nDMRDelay=0\nRXLevel=50\nTXLevel=50\nRXDCOffset=0\nTXDCOffset=0\nRFLevel=100\n# CWIdTXLevel=50\n# D-StarTXLevel=50\n# DMRTXLevel=50\n# YSFTXLevel=50\n# P25TXLevel=50\n# NXDNTXLevel=50\n# POCSAGTXLevel=50\nRSSIMappingFile=RSSI.dat\nTrace=0\nDebug=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
+	printf "\n\n[Transparent Data]\nEnable=0\nRemoteAddress=127.0.0.1\nRemotePort=40094\nLocalPort=40095\n# SendFrameType=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[UMP]\nEnable=0\n# Port=\\.\COM4\n# Port=/dev/ttyACM1" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[D-Star]\nEnable=${DS_EN}\nModule=${MODULE}\nSelfOnly=0\nAckReply=1\nAckTime=750\nErrorReply=1\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[DMR]\nEnable=${DMR_EN}\nBeacons=1\nBeaconInterval=180\nBeaconDuration=3\nColorCode=${CC}\nSelfOnly=0\nEmbeddedLCOnly=0\nDumpTAData=${TA}\n# Prefixes=234,235\n# Slot1TGWhiteList=\n# Slot2TGWhiteList=\nCallHang=3\nTXHang=4\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
-	printf "\n\n[System Fusion]\nEnable=${YSF_EN}\nLowDeviation=0\nSelfOnly=0\nTXHang=4\n# DGID=1\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
+	printf "\n\n[System Fusion]\nEnable=${YSF_EN}\nLowDeviation=0\nSelfOnly=0\nTXHang=${YSF_TXHANG}\n# DGID=1\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[P25]\nEnable=0\nNAC=293\nSelfOnly=0\nOverrideUIDCheck=0\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[NXDN]\nEnable=0\nRAN=1\nSelfOnly=0\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
+	printf "\n\n[POCSAG]\nEnable=0\nFrequency=439987500" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[D-Star Network]\nEnable=1\nGatewayAddress=127.0.0.1\nGatewayPort=20010\nLocalPort=20011\n# ModeHang=3\nDebug=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[DMR Network]\nEnable=${DMR_EN}\nAddress=127.0.0.1\nPort=62031\nJitter=360\nLocal=62032\nPassword=PASSWORD\n# Options=\nSlot1=1\nSlot2=1\n# ModeHang=3\nDebug=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[System Fusion Network]\nEnable=1\nLocalAddress=127.0.0.1\nLocalPort=3200\nGatewayAddress=127.0.0.1\nGatewayPort=4200\n# ModeHang=3\nDebug=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[P25 Network]\nEnable=0\nGatewayAddress=127.0.0.1\nGatewayPort=42020\nLocalPort=32010\n# ModeHang=3\nDebug=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[NXDN Network]\nEnable=0\nLocalAddress=127.0.0.1\nLocalPort=14021\nGatewayAddress=127.0.0.1\nGatewayPort=14020\n# ModeHang=3\nDebug=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
+	printf "\n\n[POCSAG Network]\nEnable=0\nLocalAddress=127.0.0.1\nLocalPort=3800\nGatewayAddress=127.0.0.1\nGatewayPort=4800\n# ModeHang=3\nDebug=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[TFT Serial]\n# Port=modem\nPort=/dev/ttyAMA0\nBrightness=50" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[HD44780]\nRows=2\nColumns=16\n\n# For basic HD44780 displays (4-bit connection)\n# rs, strb, d0, d1, d2, d3\nPins=11,10,0,1,2,3\n\n# Device address for I2C\nI2CAddress=0x20\n\n# PWM backlight\nPWM=0\nPWMPin=21\nPWMBright=100\nPWMDim=16\n\nDisplayClock=1\nUTC=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[Nextion]\n# Port=modem\nPort=/dev/ttyAMA0\nBrightness=50\nDisplayClock=1\nUTC=0\n#Screen Layout: 0=G4KLX 2=ON7LDS\nScreenLayout=2\nIdleBrightness=20" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
@@ -205,6 +277,109 @@ if [ $DS_EN = "1" ]; then
 	printf "\nremoteEnabled=${REMOTE_EN}\nremotePassword=${REMOTE_PWD}\nremotePort=${REMOTE_PORT}\nlanguage=${LANGUAGE_NUM}\ninfoEnabled=1\nechoEnabled=1\nlogEnabled=1\ndratsEnabled=1\ndtmfEnabled=1\nwindowX=290\nwindowY=284" >>${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
 
 	nano ${CONFIG_PATH_IRCDDBGATEWAY}ircddbgateway
+fi
+
+if [ $DASH_EN = "1" ]; then
+
+	rm  ${CONFIG_PATH_DASHBOARD}config.php
+
+	printf "<?php\n# This is an auto-generated config-file!\n# Be careful, when manual editing this!\n\ndate_default_timezone_set('UTC');">>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("MMDVMLOGPATH", "${LOG_PATH_MMDVMHOST}");\ndefine("MMDVMINIPATH", "${CONFIG_PATH_MMDVMHOST}");\ndefine("MMDVMINIFILENAME", "MMDVM.ini");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("MMDVMHOSTPATH", "/usr/local/bin/");'>>${CONFIG_PATH_DASHBOARD}config.php
+	if [ $Snm = "on" ]; then
+		printf '\ndefine("ENABLEXTDLOOKUP", "${Snm}");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $ShTA = "on" ]; then
+		printf '\ndefine("TALKERALIAS", "${ShTA}");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $SL3 = "on" ]; then
+        printf '\ndefine("USESQLITE", "${SL3}");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	printf '\ndefine("DMRIDDATPATH", "${LOG_PATH_MMDVMHOST}DMRIds.dat");'>>${CONFIG_PATH_DASHBOARD}config.php
+	if [ $TGN = "on" ]; then
+		printf '\ndefine("RESOLVETGS", "${TGN}");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $YSFGat = "on" ]; then
+		printf '\ndefine("ENABLEYSFGATEWAY", "${YSFGat}");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	printf '\ndefine("YSFGATEWAYLOGPATH", "${LOG_PATH_YSFGATEWAY}");\ndefine("YSFGATEWAYLOGPREFIX", "YSFGateway");\ndefine("YSFGATEWAYINIPATH", "${CONFIG_PATH_YSFGATEWAY}");\ndefine("YSFGATEWAYINIFILENAME", "YSFGateway.ini");\ndefine("YSFHOSTSPATH", "${LOG_PATH_YSFGATEWAY}YSFHosts.txt");\ndefine("YSFHOSTSFILENAME", "YSFHotst.txt");'>>${CONFIG_PATH_DASHBOARD}config.php
+	if [ $DMRGat = "on" ]; then
+		printf '\ndefine("ENABLEDMRGATEWAY", "${DMRGat}");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	printf '\ndefine("DMRGATEWAYLOGPATH", "${LOG_PATH_DMRGATEWAY}");\ndefine("DMRGATEWAYLOGPREFIX", "DMRGateway");\ndefine("DMRGATEWAYINIPATH", "${CONFIG_PATH_DMRGATEWAY}");\ndefine("DMRGATEWAYPATH", "/usr/local/bin/");\ndefine("DMRGATEWAYINIFILENAME", "DMRGateway.ini");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("LINKLOGPATH", "${LOG_PATH_IRCDDBGATEWAY}");\ndefine("IRCDDBGATEWAY", "ircddbgatewayd");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("TIMEZONE", "${TZ}");\ndefine("LOCALE", "${LOC}");\ndefine("LOGO", "${URLlogo}");'>>${CONFIG_PATH_DASHBOARD}config.php
+	if [ $NETphp = "on" ]; then
+		printf '\ndefine("JSONNETWORK", "${NETphp}");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	printf '\ndefine("DMRPLUSLOGO", "${DMRlogo}");\ndefine("BRANDMEISTERLOGO", "${BMlogo}");\ndefine("REFRESHAFTER", "${Ref}");'>>${CONFIG_PATH_DASHBOARD}config.php
+	if [ $ShCI = "on" ]; then
+		printf '\ndefine("SHOWCUSTOM", "'${ShCI}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $ShSI = "on" ]; then
+		printf '\ndefine("SHOWCPU", "'${ShSI}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $ShDU = "on" ]; then
+		printf '\ndefine("SHOWDISK", "'${ShDU}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $ShRI = "on" ]; then
+		printf '\ndefine("SHOWRPTINFO", "'${ShRI}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $ShEM = "on" ]; then
+		printf '\ndefine("SHOWMODES", "'${ShEM}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $ShLH = "on" ]; then
+		printf '\ndefine("SHOWLH", "'${ShLH}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $ShLT = "on" ]; then
+		printf '\ndefine("SHOWLOCALTX", "'${ShLT}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $ShPR = "on" ]; then
+		printf '\ndefine("SHOWPROGRESSBARS", "'${ShPR}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $CPUT = "on" ]; then
+		printf '\ndefine("TEMPERATUREALERT", "'${CPUT}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+		printf '\ndefine("TEMPERATUREHIGHLEVEL", "'${WART}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	if [ $NSF = "on" ]; then
+		printf '\ndefine("ENABLENETWORKSWITCHING", "'${NSF}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $DMRRSF = "on" ]; then
+		printf '\ndefine("ENABLEREFLECTORSWITCHING", "'${DMRRSF}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	if [ $YSFRSF = "on" ]; then
+		printf '\ndefine("ENABLEYSFREFLECTORSWITCHING", "'${YSFRSF}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	printf '\ndefine("SWITCHNETWORKUSER", "'${UseSN}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("SWITCHNETWORKPW", "'${PasSN}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	if [ $MF = "on" ]; then
+		printf '\ndefine("ENABLEMANAGEMENT", "'${MF}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	printf '\ndefine("VIEWLOGUSER", "'${UseVL}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("VIEWLOGPW", "'${PasVL}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("HALTUSER", "'${UseHa}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("HALTPW", "'${PasHa}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("REBOOTUSER", "'${UseRe}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("REBOOTPW", "'${PasRe}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("RESTARTUSER", "'${UseRs}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("RESTARTPW", "'${PasRs}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("REBOOTYSFGATEWAY", "sudo service ysfgateway restart");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("REBOOTMMDVM", "sudo service mmdvmhost restart");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("REBOOTSYS", "sudo reboot");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("HALTSYS", "sudo halt");'>>${CONFIG_PATH_DASHBOARD}config.php
+	if [ $ShPO = "on" ]; then
+		printf '\ndefine("SHOWPOWERSTATE", "'${ShPO}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	printf '\ndefine("POWERONLINEPIN", "'${GPIOMo}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	printf '\ndefine("POWERONLINESTATE", "'${OnLnSt}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	if [ $QRZcom = "on" ]; then
+		printf '\ndefine("SHOWQRZ", "'${QRZcom}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+	fi
+	printf '\ndefine("RSSI", "'${RSSI}'");'>>${CONFIG_PATH_DASHBOARD}config.php
+
+	printf "\n?>">>${CONFIG_PATH_DASHBOARD}config.php
+
+	nano ${CONFIG_PATH_DASHBOARD}config.php
 fi
 
 exit 0

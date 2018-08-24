@@ -35,12 +35,12 @@ echo 'Eliminazione servizi......'
 rm -R /lib/systemd/system/mmdvmhost.* /lib/systemd/system/dmrgateway.* /lib/systemd/system/ysfgateway.* /lib/systemd/system/ysfparrot.* /lib/systemd/system/ircddbgatewayd.* /lib/systemd/system/telegrambot.* /lib/systemd/system/${FILE_NAME}.*
 
 echo 'Disinstallazione ircDDBGateway.....'
-cd /home/pi/MMDVM/OpenDV/ircDDBGateway/
+cd /home/pi/MMDVM/ircDDBGateway/
 make distclean
 make clean
 
-rm -R /usr/local/bin/aprstransmit /usr/local/bin/remotecontrold /usr/local/bin/texttransmit /usr/local/bin/voicetransmit /usr/local/sbin/aprstransmitd /usr/local/sbin/ircddbgatewayd /usr/local/sbin/starnetserverd /usr/local/sbin/timercontrold /usr/local/sbin/timeserverd
-rm -R /usr/local/share/opendv
+rm -R /usr/local/bin/aprstransmitd /usr/local/bin/remotecontrold /usr/local/bin/texttransmitd /usr/local/bin/voicetransmitd /usr/local/sbin/aprstransmitd /usr/local/sbin/ircddbgatewayd /usr/local/sbin/ircddbgatewayconfig /usr/local/sbin/starnetserverd /usr/local/sbin/timercontrold /usr/local/sbin/timeserverd
+rm -R /usr/share/ircddbgateway
 
 echo 'Disinstallazione di mmdvmhost, dmrgateway, ysfgateway, ysfparrot, buttonoff.....'
 rm -R ${LOG_PATH_MMDVMHOST} ${LOG_PATH_DMRGATEWAY} ${LOG_PATH_YSFGATEWAY} ${LOG_PATH_IRCDDBGATEWAY} ${CONFIG_PATH_MMDVMHOST} ${CONFIG_PATH_DMRGATEWAY} ${CONFIG_PATH_YSFGATEWAY} ${CONFIG_PATH_IRCDDBGATEWAY} 
@@ -54,6 +54,7 @@ rm -R /var/www/html/MMDVMHost-Dashboard/
 
 rm -R /home/pi/script/
 
+echo 'Eliminazione servizi crontab....'
 sed -e /home/d -e /log/d /etc/crontab > /tmp/crontabappend
 cat /tmp/crontabappend > /etc/crontab
 rm /tmp/crontabappend
