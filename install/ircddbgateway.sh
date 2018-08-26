@@ -6,10 +6,10 @@ CONFIG_PATH_IRCDDBGATEWAY=$3
 PATH_EXEC=$4
 N_CPU=$5
 
-	git clone https://github.com/g4klx/ircDDBGateway.git /home/pi/MMDVM/
+	git clone https://github.com/g4klx/ircDDBGateway.git /home/pi/MMDVM/ircDDBGateway
 	echo 'Compilazione  IRCDDBGateway...'
 	cd /home/pi/MMDVM/ircDDBGateway/
-    make clean
+        make clean
 	sed -i "s%/var/log%${LOG_PATH_IRCDDBGATEWAY}%g" /home/pi/MMDVM/ircDDBGateway/Makefile
 	sed -i "s%/etc%${CONFIG_PATH_IRCDDBGATEWAY}%g" /home/pi/MMDVM/ircDDBGateway/Makefile
 	sed -i "s%/usr/bin%/usr/local/bin%g" /home/pi/MMDVM/ircDDBGateway/Makefile
