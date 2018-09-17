@@ -169,6 +169,6 @@ ircDDBGateway
 	
 	AUDIO File and Reflector list
 	
-	/usr/local/share/opendv
+	/usr/share/ircddbgateway
 
 
