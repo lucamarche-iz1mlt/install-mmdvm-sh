@@ -53,7 +53,7 @@ XLX_TG="6"
 XLX_TS="1"
 XLX_STARTUP="999"
 BM_EN="1"
-BM_IP="95.110.161.52"
+BM_IP="bm2222@dmrbrescia.it"
 DMRP_EN="0"
 DMRP_IP="93.186.255.126"
 
@@ -76,25 +76,25 @@ CONFIG_PATH_DASHBOARD="/var/www/html/MMDVMHost-Dashboard/config/"
 # -----------------------
 # MMDVMHost-Configuration
 # -----------------------
-Snm="on"				    # Enable extended lookup (show names
-ShTA="on" 				    # Show Talker Alias
-SL3="off"				    # Use SQLITE3-Database instead of DMRIDs.dat
-TGN="on"				    # Enable TG-Names
+Snm="on"				   # Enable extended lookup (show names
+ShTA="on"				   # Show Talker Alias
+SL3="off"				   # Use SQLITE3-Database instead of DMRIDs.dat
+TGN="on"				   # Enable TG-Names
 
 # ------------------------
 # YSFGateway-Configuration
 # ------------------------
-YSFGat="on"				    # Enable YSFGateway
-YSFlog="YSFGateway"			# Logfile-prefix
-YSFini="YSFGateway.ini"		# YSFGateway.ini-filename
-YSFHos="YSFHotst.txt"		# YSFHosts.txt-filename
+YSFGat="on"				   # Enable YSFGateway
+YSFlog="YSFGateway"			   # Logfile-prefix
+YSFini="YSFGateway.ini"		   # YSFGateway.ini-filename
+YSFHos="YSFHotst.txt"			   # YSFHosts.txt-filename
 
 # ------------------------
 # DMRGateway-Configuration
 # ------------------------
-DMRGat="on"				    # Enable DMRGateway
-DMRlog="DMRGateway"			# Logfile-prefix
-DMRini="DMRGateway.ini"	    # DMRGateway.ini-filename
+DMRGat="on"				   # Enable DMRGateway
+DMRlog="DMRGateway"			   # Logfile-prefix
+DMRini="DMRGateway.ini"		   # DMRGateway.ini-filename
 
 # ---------------------------
 # ircddbgateway-Configuration
@@ -104,43 +104,43 @@ ircDDB="ircddbgatewayd"		# Name of ircddbgateway-executeable
 # --------------------
 # Global Configuration
 # --------------------
-PathEx="/usr/local/bin/"	# Path to executable files
-TZ="Europe/Rome"			# Timezone
-LOC="en_GB"				    # Locale
-URLlogo=""				    # URL to Logo
-NETphp="on"				    # Use networks.php instead of configuration below
-DMRlogo=""				    # URL to DMRplus-Logo
-BMlogo=""				    # URL to BrandMeister-Logo
-Ref="60"				    # Refresh page after in seconds
-ShCI="on"				    # Show Custom Info
-ShSI="on"				    # Show System Info
-ShDU="on"				    # Show Disk Use	
-ShRI="on"				    # Show Repeater Info
-ShEM="on"				    # Show Enabled Modes
-ShLH="on"				    # Show Last Heard List of today's
-ShLT="on"				    # Show Today's local transmissions
-ShPR="on"				    # Show progressbars
-CPUT="on"				    # Enable CPU-temperature-warning
-WART="60"				    # Warning temperature
-NSF="on"				    # Enable Network-Switching-Function
-DMRRSF="on"				    # Enable Reflector-Switching-Function (DMR)
-YSFRSF="on"				    # Enable Reflector-Switching-Function (YSF)
-UseSN=""				    # Username for switching networks
-PasSN=""				    # Password for switching networks
-MF="on"					    # Enable Management-Functions below
-UseVL=""				    # Username for view log
-PasVL=""				    # Password for view log	
-UseHa=""				    # Username for halt
-PasHa=""				    # Password for halt
-UseRe=""				    # Username for reboot
-PasRe=""				    # Password for reboot
-UseRs=""				    # Username for restart
-PasRs=""				    # Password for restart
-ShPO="on"				    # Show Powerstate (online or battery, wiringpi needed) 
-GPIOMo="18"				    # GPIO pin to monitor
-OnLnSt="1"				    # State that signalizes online-state
-QRZcom="on"				    # Show link to QRZ.com on Callsigns
-RSSI="avg"				    # RSSI value (min, max, avg, all)
+PathEx="/usr/local/bin/"	           # Path to executable files
+TZ="Europe/Rome"			   # Timezone
+LOC="en_GB"				   # Locale
+URLlogo=""				   # URL to Logo
+NETphp="on"				   # Use networks.php instead of configuration below
+DMRlogo=""				   # URL to DMRplus-Logo
+BMlogo=""				   # URL to BrandMeister-Logo
+Ref="60"				   # Refresh page after in seconds
+ShCI="on"				   # Show Custom Info
+ShSI="on"				   # Show System Info
+ShDU="on"				   # Show Disk Use	
+ShRI="on"				   # Show Repeater Info
+ShEM="on"				   # Show Enabled Modes
+ShLH="on"				   # Show Last Heard List of today's
+ShLT="on"				   # Show Today's local transmissions
+ShPR="on"				   # Show progressbars
+CPUT="on"				   # Enable CPU-temperature-warning
+WART="60"				   # Warning temperature
+NSF="on"				   # Enable Network-Switching-Function
+DMRRSF="on"				   # Enable Reflector-Switching-Function (DMR)
+YSFRSF="on"				   # Enable Reflector-Switching-Function (YSF)
+UseSN=""				   # Username for switching networks
+PasSN=""				   # Password for switching networks
+MF="on"				   # Enable Management-Functions below
+UseVL=""				   # Username for view log
+PasVL=""				   # Password for view log	
+UseHa=""				   # Username for halt
+PasHa=""				   # Password for halt
+UseRe=""		                   # Username for reboot
+PasRe=""				   # Password for reboot
+UseRs=""				   # Username for restart
+PasRs=""				   # Password for restart
+ShPO="on"				   # Show Powerstate (online or battery, wiringpi needed) 
+GPIOMo="18"				   # GPIO pin to monitor
+OnLnSt="1"				   # State that signalizes online-state
+QRZcom="on"				   # Show link to QRZ.com on Callsigns
+RSSI="avg"				   # RSSI value (min, max, avg, all)
 
 #-----------------------------------------------------------------------------------------#
 #-----------------------------------------------------------------------------------------#
@@ -205,7 +205,7 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	printf "\n\n[Modem]\nPort=${PORT_MODEM}\nProtocol=uart\n# Address=0x22\nTXInvert=${TX_INV}\nRXInvert=${RX_INV}\nPTTInvert=0\nTXDelay=100\nRXOffset=0\nTXOffset=0\nDMRDelay=0\nRXLevel=50\nTXLevel=50\nRXDCOffset=0\nTXDCOffset=0\nRFLevel=100\n# CWIdTXLevel=50\n# D-StarTXLevel=50\n# DMRTXLevel=50\n# YSFTXLevel=50\n# P25TXLevel=50\n# NXDNTXLevel=50\n# POCSAGTXLevel=50\nRSSIMappingFile=RSSI.dat\nTrace=0\nDebug=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[Transparent Data]\nEnable=0\nRemoteAddress=127.0.0.1\nRemotePort=40094\nLocalPort=40095\n# SendFrameType=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[UMP]\nEnable=0\n# Port=\\.\COM4\n# Port=/dev/ttyACM1" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
-	printf "\n\n[D-Star]\nEnable=${DS_EN}\nModule=${MODULE}\nSelfOnly=0\nAckReply=1\nAckTime=750\nErrorReply=1\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
+	printf "\n\n[D-Star]\nEnable=${DS_EN}\nModule=${MODULE}\nSelfOnly=0\nAckReply=1\nAckTime=750\nAckMessage=0\nErrorReply=1\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[DMR]\nEnable=${DMR_EN}\nBeacons=1\nBeaconInterval=180\nBeaconDuration=3\nColorCode=${CC}\nSelfOnly=0\nEmbeddedLCOnly=0\nDumpTAData=${TA}\n# Prefixes=234,235\n# Slot1TGWhiteList=\n# Slot2TGWhiteList=\nCallHang=3\nTXHang=4\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[System Fusion]\nEnable=${YSF_EN}\nLowDeviation=0\nSelfOnly=0\nTXHang=${YSF_TXHANG}\n# DGID=1\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[P25]\nEnable=0\nNAC=293\nSelfOnly=0\nOverrideUIDCheck=0\nRemoteGateway=0\n# ModeHang=10" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
@@ -220,9 +220,9 @@ SHIFT=$((${FREQ_RX:0:3}${FREQ_RX:4} - ${FREQ_TX:0:3}${FREQ_TX:4}))
 	printf "\n\n[TFT Serial]\n# Port=modem\nPort=/dev/ttyAMA0\nBrightness=50" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[HD44780]\nRows=2\nColumns=16\n\n# For basic HD44780 displays (4-bit connection)\n# rs, strb, d0, d1, d2, d3\nPins=11,10,0,1,2,3\n\n# Device address for I2C\nI2CAddress=0x20\n\n# PWM backlight\nPWM=0\nPWMPin=21\nPWMBright=100\nPWMDim=16\n\nDisplayClock=1\nUTC=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[Nextion]\n# Port=modem\nPort=/dev/ttyAMA0\nBrightness=50\nDisplayClock=1\nUTC=0\n#Screen Layout: 0=G4KLX 2=ON7LDS\nScreenLayout=2\nIdleBrightness=20" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
-	printf "\n\n[OLED]\nType=3\nBrightness=0\nInvert=0\nScroll=1" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
+	printf "\n\n[OLED]\nType=3\nBrightness=0\nInvert=0\nScroll=1\nRotate=0\nCast=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	printf "\n\n[LCDproc]\nAddress=localhost\nPort=13666\n#LocalPort=13667\nDimOnIdle=0\nDisplayClock=1\nUTC=0" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
-
+        printf "\n\n[Lock File]\nEnable=0\nFile=/tmp/MMDVM_Active.lck" >>${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 	nano ${CONFIG_PATH_MMDVMHOST}MMDVM.ini
 
 # YSFGATEWEAY
