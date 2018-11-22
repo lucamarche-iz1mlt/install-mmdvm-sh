@@ -74,20 +74,20 @@ YSFParrot
 
 IrcDDBGateway
 
-	sudo service ircddbgateway start
+	sudo service ircddbgatewayd start
 	
-	sudo service ircddbgateway stop
+	sudo service ircddbgatewayd stop
 	
-	sudo service ircddbgateway restart
+	sudo service ircddbgatewayd restart
 	
-	sudo service ircddbgateway status
+	sudo service ircddbgatewady status
 
 # Command for automatic start of service
 	sudo systemctl enable mmdvmhost.timer
 	sudo systemctl enable dmrgateway.timer
-	sudo systemctl enable ysfgatewaty.timer
+	sudo systemctl enable ysfgateway.timer
 	sudo systemctl enable ysfparrot.timer
-	sudo systemctl enable ircddbgateway.timer
+	sudo systemctl enable ircddbgatewayd.timer
 	sudo systemctl enable telegrambot.timer
 
 # Disable service at startup
