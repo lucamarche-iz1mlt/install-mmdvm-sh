@@ -1,5 +1,5 @@
 # install-mmdvm-sh
-Simple script for install mmdvm software on raspberry PI on Debian 9.
+Simple script for install mmdvm software on raspberry PI on Debian 10.
 
 Software installing:
 * MMDVMHost

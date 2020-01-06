@@ -12,17 +12,18 @@
 # Changes
 # 22-01-18 st
 # 12-05-18 aggiornamento script per debian 9 e aggiornamento YSFGateway
+# 06-01-20 Update script for Debian 10
 ################################################################################
 
 LOG_PATH_MMDVMHOST="/var/log/mmdvmhost/"
 LOG_PATH_DMRGATEWAY="/var/log/dmrgateway/"
 LOG_PATH_YSFGATEWAY="/var/log/ysfgateway/"
-LOG_PATH_IRCDDBGATEWAY="/var/log/ircddbgateway/"
+LOG_PATH_IRCDDBGATEWAY="/var/log/ircddbgateway"
 
 CONFIG_PATH_MMDVMHOST="/etc/mmdvmhost/"
 CONFIG_PATH_DMRGATEWAY="/etc/dmrgateway/"
 CONFIG_PATH_YSFGATEWAY="/etc/ysfgateway/"
-CONFIG_PATH_IRCDDBGATEWAY="/etc/ircddbgateway/"
+CONFIG_PATH_IRCDDBGATEWAY="/etc/ircddbgateway"
 
 PATH_EXEC="/usr/local/bin/"
 PATH_RUN_SCRIPT=$(pwd)

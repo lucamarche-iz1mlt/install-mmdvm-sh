@@ -9,8 +9,8 @@
 	chown -R www-data:www-data /var/www/html
 	chmod -R 775 /var/www/html
 	
-	apt-get install php7.0-common php7.0-cgi php
-	apt-get install sqlite3 php7.0-sqlite
+	apt-get install php7.3-common php7.3-cgi php
+	apt-get install sqlite3 php7.3-sqlite
 	
 	lighty-enable-mod fastcgi
 	lighty-enable-mod fastcgi-php

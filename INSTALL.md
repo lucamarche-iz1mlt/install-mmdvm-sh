@@ -1,5 +1,5 @@
 
-# INSTALL MMDVM Raspberry PI on Raspbian 9 (Stretch)        
+# INSTALL MMDVM Raspberry PI on Raspbian 10 (Buster)        
 
 
 Download the package from the terminal using the command:  
